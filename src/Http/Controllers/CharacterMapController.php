@@ -58,15 +58,15 @@ class CharacterMapController extends Controller
 
         return $characters->mapToGroups(function ($character) {
             if (!$character->location) {
-                return [['Unknown'] => $character];
+                return ['Unknown' => $character];
             }
             elseif ($character->location->solar_system) {
                 return [
-                    [$character->location->solar_system->region->name] => $character],
-                    [$character->location->solar_system->name] => $character]
+                    [$character->location->solar_system->region->name => $character],
+                    [$character->location->solar_system->name => $character]
                 ];
             }
-            return [['Other'] => $character];
+            return ['Other' => $character];
         })->toArray();
     }
 }
