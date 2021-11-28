@@ -56,7 +56,7 @@ class CharacterMapController extends Controller
             $characters = $user->characters;
         }
 
-        return $characters->get()->sortBy(function ($character) {
+        $sortedCharacters = $characters->get()->sortBy(function ($character) {
             if (!$character->location) {
                 return 'Unknown';
             } elseif ($character->location->solar_system) {
@@ -64,5 +64,7 @@ class CharacterMapController extends Controller
             }
             return 'Other';
         })->toArray();
+
+        logger()->error(print_r($sortedCharacters, true));
     }
 }
