@@ -6,9 +6,6 @@
 
 @section('full')
 
-@foreach($characters as $location => $characters)
-
-<h2>{{ $location }}</h2>
 <ul class="list-group list-group-unbordered mb-3">
   @foreach($characters as $character)
 
@@ -25,8 +22,6 @@
 
   @endforeach
 </ul>
-
-@endforeach
 
 @stop
 
