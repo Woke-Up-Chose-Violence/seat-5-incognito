@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "tehraven\\Seat\\characterlocationmap\\": "src/"
+            "tehraven\\Seat\\CharacterLocationMap\\": "src/"
         }
     },
     "minimum-stability": "dev",
