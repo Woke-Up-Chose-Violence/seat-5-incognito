@@ -51,5 +51,7 @@ class CharacterMapController extends Controller
         } else {
             $characters = $user->characters;
         }
+
+        return $characters;
     }
 }
