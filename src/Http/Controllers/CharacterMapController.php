@@ -36,12 +36,12 @@ class CharacterMapController extends Controller
      */
     public function getMap()
     {
-        $characterLocations = $this->getCharacterLocations();
+        $characters = $this->getCharacters();
 
-        return view('characterlocationmap::map', compact('characterLocations'));
+        return view('characterlocationmap::map', compact('characters'));
     }
 
-    private function getCharacterLocations()
+    private function getCharacters()
     {  
         $user = auth()->user();
         $characters = [];
