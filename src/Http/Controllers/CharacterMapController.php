@@ -23,7 +23,6 @@ namespace tehraven\Seat\CharacterLocationMap\Http\Controllers;
 
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Http\Controllers\Controller;
-use Seat\Web\Models\User;
 
 
 /**
@@ -49,18 +48,12 @@ class CharacterMapController extends Controller
     private function getCharacters()
     {  
         $user = auth()->user();
-        $characters = [];
+        $characters = CharacterInfo::with('location');
 
-        if ($user->can('character.location')) {
-            $characters = array_merge(...User::with('characters')->get()->map(function ($user) {
-                return $user->characters->filter(function ($character) {
-                    return !is_null($character->location);
-                });
-            }));
-        } else {
-            $characters = $user->characters;
+        if (!$user->can('character.location')) {
+            $characters->where('user_id', auth()->user()->id);
         }
 
-        return $characters;
+        return $characters->get();
     }
 }
