@@ -65,6 +65,8 @@ class CharacterMapController extends Controller
             return 'Other';
         })->toArray();
 
-        logger()->error(print_r($sortedCharacters, true));
+        print_r($sortedCharacters, true);
+
+        return $sortedCharacters;
     }
 }
