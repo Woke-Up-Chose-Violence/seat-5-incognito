@@ -6,22 +6,27 @@
 
 @section('full')
 
-  <ul class="list-group list-group-unbordered mb-3">
-    @foreach($characters as $character)
+  @foreach($characters as $location => $characters)
 
-      <li class="list-group-item">
+    <h2>{{ $location }}</h2>
+    <ul class="list-group list-group-unbordered mb-3">
+      @foreach($characters as $character)
 
-        <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),
-        array_merge(request()->route()->parameters, ['character' => $character])) }}">
-          {!! img('characters', 'portrait', $character->character_id, 64, ['class' => 'img-circle eve-icon small-icon']) !!}
-          {{ $character->name }} ({{ $character->user->main_character->name }})
-        </a>
+        <li class="list-group-item">
 
-        <span class="id-to-name text-muted float-right">@include('web::partials.location', ['location' => $character->location])</span>
-      </li>
+          <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),
+          array_merge(request()->route()->parameters, ['character' => $character])) }}">
+            {!! img('characters', 'portrait', $character->character_id, 64, ['class' => 'img-circle eve-icon small-icon']) !!}
+            {{ $character->name }} ({{ $character->user->main_character->name }})
+          </a>
 
-    @endforeach
-  </ul>
+          <span class="id-to-name text-muted float-right">@include('web::partials.location', ['location' => $character->location])</span>
+        </li>
+
+      @endforeach
+    </ul>
+
+  @endforeach
 
 @stop
 
