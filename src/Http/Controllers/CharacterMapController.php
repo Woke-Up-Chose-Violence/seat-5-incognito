@@ -52,7 +52,7 @@ class CharacterMapController extends Controller
         $characters = [];
 
         if ($user->can('character.location')) {
-            $characters = array_merge(...User::with('characters', 'characters.location')->get()->map(function ($user) {
+            $characters = array_merge(...User::with('characters')->get()->map(function ($user) {
                 return $user->characters->filter(function ($character) {
                     return !is_null($character->location);
                 });
