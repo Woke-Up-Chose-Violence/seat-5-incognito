@@ -39,7 +39,7 @@
       <li class="list-group-item">
 
         <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),
-        array_merge(request()->route()->parameters, ['character' => $character_info])) }}">
+        array_merge(request()->route()->parameters, ['character_info' => $character_info])) }}">
           {!! img('characters', 'portrait', $character_info->character_id, 64, ['class' => 'img-circle eve-icon small-icon']) !!}
           {{ $character_info->name }}
         </a>
