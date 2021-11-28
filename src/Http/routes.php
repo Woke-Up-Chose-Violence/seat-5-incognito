@@ -26,7 +26,7 @@ Route::group([
 ], function () {
 
     // Your route definitions go here.
-    Route::get('/characterlocationmap/home', [
+    Route::get('/characterlocationmap', [
         'as'   => 'characterlocationmap.home',
         'uses' => 'CharacterMapController@getMap'
     ]);

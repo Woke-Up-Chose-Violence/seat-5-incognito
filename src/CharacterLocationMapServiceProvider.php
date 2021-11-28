@@ -159,7 +159,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
      */
     public function getPackageRepositoryUrl(): string
     {
-        return '';
+        return 'https://github.com/tehraven/seat-character-location-map';
     }
 
     /**
