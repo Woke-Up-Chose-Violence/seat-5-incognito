@@ -29,7 +29,7 @@ return [
         'plural' => false,
         'icon' => 'fas fa-certificate',
         'route_segment' => 'characterlocationmap',
-        'permission' => 'character.location'
+        'permission' => 'character.location',
         'route' => 'characterlocationmap.home',
     ],
 ];
