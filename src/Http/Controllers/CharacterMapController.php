@@ -56,7 +56,7 @@ class CharacterMapController extends Controller
             $characters = $user->characters;
         }
 
-        return $characters->mapToGroups(function ($character) {
+        return $characters->get()->mapToGroups(function ($character) {
             if (!$character->location) {
                 return ['Unknown' => $character];
             }
