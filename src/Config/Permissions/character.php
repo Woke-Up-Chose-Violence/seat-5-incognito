@@ -23,7 +23,7 @@
 return [
     // Describing character permissions is done here.
     // Refer to the web package for a structure reference.
-    'character_permission_name' => [
+    'location' => [
         'label' => 'characterlocationmap::permissions.character_permission_location_label',
         'description' => 'characterlocationmap::permissions.character_permission_location_description',
         // 'division' => 'industrial', // can be one of this list [military, assets, financial, industrial]

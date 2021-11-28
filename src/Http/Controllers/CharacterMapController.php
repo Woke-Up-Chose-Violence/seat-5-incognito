@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace tehraven\Seat\CharacterLocationMap\Http\Controllers;
 
+use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Http\Controllers\Controller;
 
 /**
@@ -35,7 +36,20 @@ class CharacterMapController extends Controller
      */
     public function getMap()
     {
+        $characterLocations = $this->getCharacterLocations();
 
-        return view('characterlocationmap::map');
+        return view('characterlocationmap::map', compact('characterLocations'));
+    }
+
+    private function getCharacterLocations()
+    {  
+        $user = auth()->user();
+        $characters = [];
+
+        if ($user->can('character.location')) {
+            $characters = $user->characters();
+        } else {
+            $characters = $user->characters;
+        }
     }
 }
