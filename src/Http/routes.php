@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 // Namespace all of the routes for this package.
 Route::group([
-    'namespace'  => 'Author\Seat\CharacterLocationMap\Http\Controllers',
+    'namespace'  => 'tehraven\Seat\CharacterLocationMap\Http\Controllers',
     'middleware' => ['web', 'auth', 'locale'],
 ], function () {
 

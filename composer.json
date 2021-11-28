@@ -1,16 +1,16 @@
 {
-    "name": "author/your-package",
-    "description": "Your package description",
+    "name": "tehraven/seat-character-location-map",
+    "description": "A Character Mapping Tool for SeAT (eveseat)",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
-            "name": "Leon Jacobs",
-            "email": "leonja511@gmail.com"
+            "name": "Anthony Powers",
+            "email": "tehraven@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Author\\Seat\\characterlocationmap\\": "src/"
+            "tehraven\\Seat\\characterlocationmap\\": "src/"
         }
     },
     "minimum-stability": "dev",
@@ -27,7 +27,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Author\\Seat\\characterlocationmap\\WebServiceProvider"
+                "tehraven\\Seat\\CharacterLocationMap\\CharacterLocationMapServiceProvider"
             ]
         }
     }

@@ -19,14 +19,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace Author\Seat\CharacterLocationMap\Http\Controllers;
+namespace tehraven\Seat\CharacterLocationMap\Http\Controllers;
 
 use Seat\Web\Http\Controllers\Controller;
 
 /**
  * Class CharacterMapController.
  *
- * @package Author\Seat\CharacterLocationMap\Http\Controllers
+ * @package tehraven\Seat\CharacterLocationMap\Http\Controllers
  */
 class CharacterMapController extends Controller
 {
