@@ -1,8 +1,8 @@
 @extends('web::layouts.grids.12')
 
-@section('title', trans('yourpackage::global.browser_title'))
-@section('page_header', trans('yourpackage::global.page_title'))
-@section('page_description', trans('yourpackage::global.page_subtitle'))
+@section('title', trans('characterlocationmap::global.browser_title'))
+@section('page_header', trans('characterlocationmap::global.page_title'))
+@section('page_description', trans('characterlocationmap::global.page_subtitle'))
 
 @section('full')
 

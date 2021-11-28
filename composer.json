@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Author\\Seat\\YourPackage\\": "src/"
+            "Author\\Seat\\characterlocationmap\\": "src/"
         }
     },
     "minimum-stability": "dev",
@@ -27,7 +27,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Author\\Seat\\YourPackage\\WebServiceProvider"
+                "Author\\Seat\\characterlocationmap\\WebServiceProvider"
             ]
         }
     }

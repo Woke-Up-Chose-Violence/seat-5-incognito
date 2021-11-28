@@ -19,23 +19,23 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace Author\Seat\YourPackage\Http\Controllers;
+namespace Author\Seat\CharacterLocationMap\Http\Controllers;
 
 use Seat\Web\Http\Controllers\Controller;
 
 /**
- * Class HomeController.
+ * Class CharacterMapController.
  *
- * @package Author\Seat\YourPackage\Http\Controllers
+ * @package Author\Seat\CharacterLocationMap\Http\Controllers
  */
-class HomeController extends Controller
+class CharacterMapController extends Controller
 {
     /**
      * @return \Illuminate\View\View
      */
-    public function getHome()
+    public function getMap()
     {
 
-        return view('yourpackage::myview');
+        return view('characterlocationmap::map');
     }
 }

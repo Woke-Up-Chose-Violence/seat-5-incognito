@@ -21,14 +21,14 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 // Namespace all of the routes for this package.
 Route::group([
-    'namespace'  => 'Author\Seat\YourPackage\Http\Controllers',
+    'namespace'  => 'Author\Seat\CharacterLocationMap\Http\Controllers',
     'middleware' => ['web', 'auth', 'locale'],
 ], function () {
 
     // Your route definitions go here.
-    Route::get('/your-package/home', [
-        'as'   => 'your-package.home',
-        'uses' => 'HomeController@getHome'
+    Route::get('/characterlocationmap/home', [
+        'as'   => 'characterlocationmap.home',
+        'uses' => 'CharacterMapController@getMap'
     ]);
 
 });

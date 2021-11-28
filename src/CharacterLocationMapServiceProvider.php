@@ -19,16 +19,16 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace Author\Seat\YourPackage;
+namespace Author\Seat\CharacterLocationMap;
 
 use Seat\Services\AbstractSeatPlugin;
 
 /**
- * Class YourPackageServiceProvider.
+ * Class CharacterLocationMapServiceProvider.
  *
- * @package Author\Seat\YourPackage
+ * @package Author\Seat\CharacterLocationMap
  */
-class YourPackageServiceProvider extends AbstractSeatPlugin
+class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
 {
     public function boot()
     {
@@ -51,8 +51,8 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/Config/yourpackage.config.php', 'yourpackage.config');
-        $this->mergeConfigFrom(__DIR__ . '/Config/yourpackage.locale.php', 'yourpackage.locale');
+        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'characterlocationmap.config');
+        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'characterlocationmap.locale');
 
         // Overload sidebar with your package menu entries
         $this->mergeConfigFrom(__DIR__ . '/Config/Menu/package.sidebar.php', 'package.sidebar');
@@ -64,10 +64,10 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
         // $this->mergeConfigFrom(__DIR__ . '/Config/Menu/package.corporation.php', 'package.corporation.menu');
 
         // Register generic permissions
-        $this->registerPermissions(__DIR__ . '/Config/Permissions/other.php', 'other');
+        // $this->registerPermissions(__DIR__ . '/Config/Permissions/other.php', 'other');
 
         // Uncomment this block to register character permissions
-        // $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
+        $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
 
         // Uncomment this block to register corporation permissions
         // $this->registerPermissions(__DIR__ . '/Config/Permissions/corporation.php', 'corporation');
@@ -109,7 +109,7 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     private function add_translations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'yourpackage');
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'characterlocationmap');
     }
 
     /**
@@ -117,7 +117,7 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     private function add_views()
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'yourpackage');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'characterlocationmap');
     }
 
     /**
@@ -147,7 +147,7 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     public function getName(): string
     {
-        return 'Your Package Friendly Name';
+        return 'Character Location Map';
     }
 
     /**
@@ -159,7 +159,7 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     public function getPackageRepositoryUrl(): string
     {
-        return 'https://example.com';
+        return '';
     }
 
     /**
@@ -171,7 +171,7 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistPackageName(): string
     {
-        return 'your-package';
+        return 'seat-character-location-map';
     }
 
     /**
@@ -183,7 +183,7 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistVendorName(): string
     {
-        return 'author';
+        return 'tehraven';
     }
 
     /**
@@ -193,6 +193,6 @@ class YourPackageServiceProvider extends AbstractSeatPlugin
      */
     public function getVersion(): string
     {
-        return config('yourpackage.config.version');
+        return config('characterlocationmap.config.version');
     }
 }

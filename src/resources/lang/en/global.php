@@ -21,7 +21,7 @@
  */
 
 return [
-    'browser_title' => 'Browser Title',
-    'page_title' => 'Page Title',
-    'page_subtitle' => 'Page Sub-title',
+    'browser_title' => 'Character Location Map',
+    'page_title' => 'Character Location Map',
+    'page_subtitle' => 'Where all your characters are in space',
 ];

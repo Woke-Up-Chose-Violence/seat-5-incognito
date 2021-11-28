@@ -23,19 +23,12 @@ return [
 
     // Integrating with the SeAT menu is defined here.
     // Refer to the web package for a structure reference.
-    'your-package' => [
-        'name' => 'menu-entry-name',
-        'label' => 'yourpackage::menu.main_level',
-        'plural' => true,
+    'Character Map' => [
+        'name' => 'character-map',
+        'label' => 'characterlocationmap::menu.main_level',
+        'plural' => false,
         'icon' => 'fas fa-certificate',
-        'route_segment' => 'yourpackage',
-        'entries' => [
-            [
-                'name' => 'menu-sub-entry-name',
-                'label' => 'yourpackage::menu.sub_level',
-                'icon' => 'fas fa-th-list',
-                'route' => 'your-package.home',
-            ],
-        ],
+        'route_segment' => 'characterlocationmap',
+        'route' => 'characterlocationmap.home',
     ],
 ];
