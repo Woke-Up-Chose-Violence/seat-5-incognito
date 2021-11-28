@@ -46,9 +46,9 @@ class CharacterMapController extends Controller
      * @return array List of Characters Grouped by Location Type Keys
      */
     private function getCharacters()
-    {  
+    {
         $user = auth()->user();
-        $characters;
+        $characters = null;
 
         if ($user->can('character.location')) {
             $characters = CharacterInfo::with('location');
@@ -56,17 +56,13 @@ class CharacterMapController extends Controller
             $characters = $user->characters;
         }
 
-        return $characters->get()->mapToGroups(function ($character) {
+        return $characters->get()->sortBy(function ($character) {
             if (!$character->location) {
-                return ['Unknown' => $character];
+                return 'Unknown';
+            } elseif ($character->location->solar_system) {
+                return $character->location->solar_system->name;
             }
-            elseif ($character->location->solar_system) {
-                return [
-                    [$character->location->solar_system->region->name => $character],
-                    [$character->location->solar_system->name => $character]
-                ];
-            }
-            return ['Other' => $character];
-        })->toArray();
+            return 'Other';
+        });
     }
 }
