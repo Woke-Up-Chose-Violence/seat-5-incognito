@@ -63,7 +63,7 @@ class CharacterMapController extends Controller
                 return $character->location->solar_system->name;
             }
             return 'Other';
-        })->toArray();
+        })->all();
 
         print_r($sortedCharacters, true);
 
