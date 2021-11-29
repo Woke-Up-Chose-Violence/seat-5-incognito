@@ -57,18 +57,18 @@ class CharacterMapController extends Controller
     private function getCharacters(int $region_id = null)
     {
         $user = auth()->user();
-        $characters = null;
+        $characters = CharacterInfo::with('location', 'location.solar_system', 'location.solarsystem.region');
 
-        if ($user->can('character.location')) {
-            $characters = CharacterInfo::with('location')->all();
-            print_r($characters->toSql());
-        } else {
-            $characters = $user->characters();
+        if ($region_id) {
+            $characters = $characters->whereHas('location.solar_system.region', function ($region) use ($region_id) {
+                if ($region_id) {
+                    $region->where('region_id', $region_id);
+                }
+            });
         }
 
-        if (!is_null($region_id)) {
-            print_r("Region: " . $region_id);
-            $characters = $characters->where('location.solar_system.region.region_id', $region_id);
+        if (!$user->can('character.location')) {
+            $characters = $characters->whereIn('character_id', $user->characters()->get()->pluck('character_id'));
         }
 
         print_r($characters->toSql());
