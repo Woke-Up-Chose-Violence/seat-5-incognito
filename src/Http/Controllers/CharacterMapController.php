@@ -66,7 +66,7 @@ class CharacterMapController extends Controller
         }
 
         if (!is_null($region_id)) {
-            $characters->with(['location.solar_system.region' => function ($query) {
+            $characters->with(['location.solar_system.region' => function ($query) use ($region_id) {
                 $query->where('region_id', $region_id);
             }])->get();
         }
