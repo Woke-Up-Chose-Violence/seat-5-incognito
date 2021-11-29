@@ -8,7 +8,7 @@
 
 <select name="regions" id="region_list" class="form-control">
     @foreach($allRegions as $aRegion)
-        <option value="{{ $aRegion->region_id }}">{{ $aRegion->name }}</option>
+        <option value="{{ $aRegion->region_id }}" {{ @if($aRegion->region_id === $region->region_id) }}selected{{ @endif }}>{{ $aRegion->name }}</option>
     @endforeach
 </select>
 
@@ -16,6 +16,25 @@
 <h3>{{ $region->name }}</h3>
 
 <div id='svgMap'>Loading...</div>
+
+<br />
+
+<ul class="list-group list-group-unbordered mb-3">
+  @foreach($characters as $character)
+
+  <li class="list-group-item">
+
+    <a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),
+          array_merge(request()->route()->parameters, ['character' => $character])) }}">
+      {!! img('characters', 'portrait', $character->character_id, 64, ['class' => 'img-circle eve-icon small-icon']) !!}
+      {{ $character->name }} ({{ $character->user->main_character->name }})
+    </a>
+
+    <span class="id-to-name text-muted float-right">@include('web::partials.location', ['location' => $character->location])</span>
+  </li>
+
+  @endforeach
+</ul>
 
 @stop
 
@@ -36,23 +55,25 @@
         document.location = route;
     });
 
-    setTimeout(function() {
+    function init() {
         document.getElementById('legend').remove();
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
-    });
-    setTimeout(function() {
-        let title;
-        @foreach($characters as $character)
-        try {
-            document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
-            title = document.createElement('p');
-            title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
-            document.querySelector("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
-        } catch(e) {
-            console.error(e);
-        }        
-        @endforeach
-    }, 500);
+        setTimeout(function() {
+            let title;
+            @foreach($characters as $character)
+            try {
+                document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
+                title = document.createElement('title');
+                title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
+                document.querySelector("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
+            } catch(e) {
+                console.error(e);
+            }        
+            @endforeach
+        }, 500);
+    };
+
+    init();
 </script>
 @endpush
