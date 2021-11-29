@@ -8,7 +8,7 @@
 
 <select name="regions" id="region_list" class="form-control">
     @foreach($allRegions as $aRegion)
-        <option value="{{ $aRegion->region_id }}" @if($aRegion->region_id === $region->region_id) selected @endif>{{ $aRegion->name }}</option>
+        <option value="{{ $aRegion->region_id }}">{{ $aRegion->name }}</option>
     @endforeach
 </select>
 
