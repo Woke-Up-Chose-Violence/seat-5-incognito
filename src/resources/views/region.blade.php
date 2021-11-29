@@ -31,7 +31,12 @@
 
 @push('javascript')
 <script>
+    function htmlDecode(input) {
+        var doc = new DOMParser().parseFromString(input, "text/html");
+        return doc.documentElement.textContent;
+    }
+
     var svgMap = document.getElementById('svgMap');
-    newSvg.outerHTML += '';
+    newSvg.outerHTML += htmlDecode("{{ $regionSvg }}");
 </script>
 @endpush
