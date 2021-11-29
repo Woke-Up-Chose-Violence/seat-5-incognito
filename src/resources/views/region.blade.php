@@ -44,12 +44,14 @@
     setTimeout(function() {
         let title;
         @foreach($characters as $character)
-        document.getElementById("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
-
-        title = document.createElement('p');
-        title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
-        document.getElementById("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
-        
+        try {
+            document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
+            title = document.createElement('p');
+            title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
+            document.querySelector("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
+        } catch(e) {
+            console.error(e);
+        }        
         @endforeach
     }, 500);
 </script>

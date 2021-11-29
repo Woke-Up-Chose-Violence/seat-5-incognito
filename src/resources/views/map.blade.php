@@ -6,11 +6,11 @@
 
 @section('full')
 
-@foreach($allRegions as $aRegion)
-<a href="{{ route('characterlocationmap.region', ['region_id' => $aRegion->region_id]) }}">
-    {{ $aRegion->name }}
-</a>&nbsp;-&nbsp;
-@endforeach
+<select name="regions" id="region_list" class="form-control">
+    @foreach($allRegions as $aRegion)
+        <option value="{{ $region->region_id }}">{{ $region->name }}</option>
+    @endforeach
+</select>
 
 <br />
 
