@@ -7,7 +7,7 @@
 @section('full')
 
 @foreach($allRegions as $aRegion)
-<a href="{{ route('characterlocationmap.region', ['region_d' => $aRegion->region_id]) }}">
+<a href="{{ route('characterlocationmap.region', ['region_id' => $aRegion->region_id]) }}">
     {{ $aRegion->name }}
 </a>&nbsp;-&nbsp;
 @endforeach

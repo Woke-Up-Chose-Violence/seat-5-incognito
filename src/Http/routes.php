@@ -30,11 +30,11 @@ Route::group([
     Route::get('/', [
         'as'   => 'characterlocationmap.home',
         'uses' => 'CharacterMapController@getMap'
-    ])->name('characterlocationmap.home');
+    ]);
 
     // Your route definitions go here.
     Route::get('/region/{region_id}', [
         'as'   => 'characterlocationmap.region',
         'uses' => 'CharacterMapController@getRegionMap'
-    ])->name('characterlocationmap.region');
+    ]);
 });
