@@ -22,13 +22,19 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 // Namespace all of the routes for this package.
 Route::group([
     'namespace'  => 'tehraven\Seat\CharacterLocationMap\Http\Controllers',
+    'prefix'     => 'locations',
     'middleware' => ['web', 'auth', 'locale'],
 ], function () {
 
     // Your route definitions go here.
-    Route::get('/characterlocationmap', [
+    Route::get('/', [
         'as'   => 'characterlocationmap.home',
         'uses' => 'CharacterMapController@getMap'
     ]);
 
+    // Your route definitions go here.
+    Route::get('/region/{region_id}', [
+        'as'   => 'characterlocationmap.home',
+        'uses' => 'CharacterMapController@getRegionMap'
+    ]);
 });

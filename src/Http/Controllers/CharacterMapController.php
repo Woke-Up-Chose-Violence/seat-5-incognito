@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace tehraven\Seat\CharacterLocationMap\Http\Controllers;
 
 use Seat\Eveapi\Models\Character\CharacterInfo;
+use Seat\Eveapi\Models\Sde\Region;
 use Seat\Web\Http\Controllers\Controller;
 
 
@@ -42,10 +43,18 @@ class CharacterMapController extends Controller
         return view('characterlocationmap::map', compact('characters'));
     }
 
+    public function getRegionMap(int $region_id)
+    {
+        $region = Region::get($region_id);
+        $characters = $this->getCharacters($region_id);
+
+        return view('characterlocationmap::map', compact('characters', 'region'));
+    }
+
     /**
      * @return array List of Characters Grouped by Location Type Keys
      */
-    private function getCharacters()
+    private function getCharacters(int $region_id = null)
     {
         $user = auth()->user();
         $characters = null;
@@ -53,20 +62,24 @@ class CharacterMapController extends Controller
         if ($user->can('character.location')) {
             $characters = CharacterInfo::with('location');
         } else {
-            $characters = $user->characters;
+            $characters = $user->characters();
         }
 
-        $sortedCharacters = $characters->get()->sortBy(function ($character) {
+        if ($region_id) {
+            $characters->whereHas('location.solar_system.region', function ($sub_query) {
+                $sub_query->whereIn('region_id', '=', $region_id);
+            });
+        }
+
+        $characters->get()->sortBy(function ($character) {
             if (!$character->location) {
                 return 'Unknown';
             } elseif ($character->location->solar_system) {
                 return $character->location->solar_system->name;
             }
             return 'Other';
-        })->all();
+        });
 
-        print_r($sortedCharacters, true);
-
-        return $sortedCharacters;
+        return $characters->all();
     }
 }
