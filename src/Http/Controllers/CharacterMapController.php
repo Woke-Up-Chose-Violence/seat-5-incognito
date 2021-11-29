@@ -45,7 +45,7 @@ class CharacterMapController extends Controller
 
     public function getRegionMap(int $region_id)
     {
-        $region = Region::get($region_id);
+        $region = Region::find($region_id);
         $characters = $this->getCharacters($region_id);
 
         return view('characterlocationmap::map', compact('characters', 'region'));
