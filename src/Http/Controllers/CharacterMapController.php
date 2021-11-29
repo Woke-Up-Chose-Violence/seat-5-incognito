@@ -60,13 +60,13 @@ class CharacterMapController extends Controller
         $characters = null;
 
         if ($user->can('character.location')) {
-            $characters = CharacterInfo::with('location');
+            $characters = CharacterInfo::with('location.solar_system.region');
         } else {
             $characters = $user->characters();
         }
 
         if (!is_null($region_id)) {
-            $characters->load(['location.solar_system.region' => function ($query) use ($region_id) {
+            $characters = $characters->with(['location.solar_system.region' => function ($query) use ($region_id) {
                 $query->where('region_id', $region_id);
             }]);
         }
