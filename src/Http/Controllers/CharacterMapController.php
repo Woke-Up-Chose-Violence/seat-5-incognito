@@ -46,7 +46,7 @@ class CharacterMapController extends Controller
     public function getRegionMap(int $region_id)
     {
         $region = Region::find($region_id);
-        $regionSvg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/SourceMaps/dotlan/' . join(explode($region->name, ' '), '_') . '.svg');
+        $regionSvg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/SourceMaps/dotlan/' . join('_', explode(', ', $region->name)) . '.svg');
         $characters = $this->getCharacters($region_id);
 
         return view('characterlocationmap::region', compact('characters', 'region', 'regionSvg'));
