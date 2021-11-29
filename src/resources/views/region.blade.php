@@ -8,7 +8,7 @@
 
 <h3>{{ $region->name }}</h3>
 
-<div id='svgMap'>{{ $regionSvg }}</div>
+<div id='svgMap'>Loading...</div>
 
 <ul class="list-group list-group-unbordered mb-3">
     @foreach($characters as $character)
@@ -36,7 +36,22 @@
         return doc.documentElement.textContent;
     }
 
-    var svgMap = document.getElementById('svgMap');
-    newSvg.outerHTML += htmlDecode("{{ $regionSvg }}");
+    var svg = document.getElementById('svgMap');
+    svg.outerHTML = htmlDecode(`{{ $regionSvg }}`);
+
+    setTimeout(function() {
+        document.getElementById('legend').remove();
+        document.getElementById('controls').remove();
+        document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
+    });
 </script>
+
+@foreach($characters as $character)
+<script>
+    setTimeout(function() {
+        document.querySelector("#sys{{ $character->location->solar_system->name }} > a")
+        document.querySelector("#rect{{ $character->location->solar_system->solar_system_id }}").forEach(el => el.style.fill = 'gray');
+    }, 500);
+</script>
+@endforeach
 @endpush
