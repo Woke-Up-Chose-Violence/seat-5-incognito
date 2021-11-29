@@ -44,14 +44,10 @@
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
     });
-</script>
-
-@foreach($characters as $character)
-<script>
     setTimeout(function() {
-        document.querySelector("#sys{{ $character->location->solar_system->name }} > a")
-        document.querySelector("#rect{{ $character->location->solar_system->solar_system_id }}").forEach(el => el.style.fill = 'gray');
+        @foreach($characters as $character)
+        document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
+        @endforeach
     }, 500);
 </script>
-@endforeach
 @endpush
