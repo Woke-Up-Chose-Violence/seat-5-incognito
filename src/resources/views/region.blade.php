@@ -6,13 +6,13 @@
 
 @section('full')
 
-@foreach($allRegions as $region)
-<a href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName(),
-          array_merge(request()->route()->parameters, ['region' => $region->region_id])) }}">
+@foreach($allRegions as $aRegion)
+<a href="{{ route('characterlocationmap.region', ['region_d' => $aRegion->region_id]) }}">
     {{ $region->name }}
 </a>&nbsp;-&nbsp;
 @endforeach
 
+<br />
 <h3>{{ $region->name }}</h3>
 
 <div id='svgMap'>Loading...</div>

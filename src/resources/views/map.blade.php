@@ -6,6 +6,14 @@
 
 @section('full')
 
+@foreach($allRegions as $aRegion)
+<a href="{{ route('characterlocationmap.region', ['region_d' => $aRegion->region_id]) }}">
+    {{ $region->name }}
+</a>&nbsp;-&nbsp;
+@endforeach
+
+<br />
+
 <ul class="list-group list-group-unbordered mb-3">
   @foreach($characters as $character)
 

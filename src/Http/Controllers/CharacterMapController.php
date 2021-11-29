@@ -38,9 +38,10 @@ class CharacterMapController extends Controller
      */
     public function getMap()
     {
+        $allRegions = Region::all()->sortBy('name');
         $characters = $this->getCharacters();
 
-        return view('characterlocationmap::map', compact('characters'));
+        return view('characterlocationmap::map', compact('allRegions', 'characters'));
     }
 
     public function getRegionMap(int $region_id)
