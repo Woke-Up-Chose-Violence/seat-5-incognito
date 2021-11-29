@@ -60,17 +60,17 @@ class CharacterMapController extends Controller
         $characters = null;
 
         if ($user->can('character.location')) {
-            $characters = CharacterInfo::with('location', 'location.solar_system', 'location.solar_system.region');
+            $characters = CharacterInfo::with('location');
             print_r($characters->toSql());
         } else {
             $characters = $user->characters();
         }
 
         if (!is_null($region_id)) {
+            print_r("Region: " . $region_id);
             $characters = $characters->where('location.solar_system.region.region_id', $region_id);
         }
 
-        print_r($region_id);
         print_r($characters->toSql());
 
         return $characters->get()->sortBy(function ($character) {
