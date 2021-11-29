@@ -60,7 +60,7 @@ class CharacterMapController extends Controller
         $characters = null;
 
         if ($user->can('character.location')) {
-            $characters = CharacterInfo::with('location');
+            $characters = CharacterInfo::with('location')->all();
             print_r($characters->toSql());
         } else {
             $characters = $user->characters();
