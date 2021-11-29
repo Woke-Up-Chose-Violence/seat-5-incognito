@@ -31,3 +31,14 @@
         </div>
     </div>
 </div>
+
+@push('javascript')
+<script>
+    $('#region_list').on('change', (e) => {
+        e.preventDefault();
+        const newRegionId = e.target.value;
+        let route = "{{ route('characterlocationmap.region', ['region_id' => '###']) }}".replace('###'), newRegionId);
+        document.location = route;
+    });
+</script>
+@endpush

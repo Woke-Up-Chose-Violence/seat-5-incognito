@@ -25,13 +25,6 @@
         return doc.documentElement.textContent;
     }
 
-    $('#region_list').on('change', (e) => {
-        e.preventDefault();
-        const newRegionId = e.target.value;
-        let route = "{{ route('characterlocationmap.region', ['region_id' => $region->region_id]) }}".replace({{ $region->region_id }}, newRegionId);
-        document.location = route;
-    });
-
     var didInit = false;
     function init() {
         if (didInit) return;
