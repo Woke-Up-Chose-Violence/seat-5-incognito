@@ -55,7 +55,10 @@
         document.location = route;
     });
 
+    var init = false;
     function init() {
+        if (init) return;
+        init = true;
         document.getElementById('legend').remove();
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
