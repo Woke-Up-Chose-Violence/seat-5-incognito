@@ -60,7 +60,8 @@ class CharacterMapController extends Controller
         $characters = null;
 
         if ($user->can('character.location')) {
-            $characters = CharacterInfo::with('location.solar_system.region');
+            $characters = CharacterInfo::with('location', 'location.solar_system', 'location.solar_system.region');
+            print_r($characters->toSql());
         } else {
             $characters = $user->characters();
         }
