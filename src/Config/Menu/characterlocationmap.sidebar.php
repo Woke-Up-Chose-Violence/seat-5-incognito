@@ -23,11 +23,11 @@ return [
 
     // Integrating with the SeAT menu is defined here.
     // Refer to the web package for a structure reference.
-    'Character Map' => [
+    'Map' => [
         'name' => 'character-map',
         'label' => 'characterlocationmap::menu.main_level',
         'plural' => false,
-        'icon' => 'fas fa-certificate',
+        'icon' => 'fas fa-map-marker-check',
         'route_segment' => 'characterlocationmap',
         'route' => 'characterlocationmap.home',
     ],
