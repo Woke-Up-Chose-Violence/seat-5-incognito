@@ -48,7 +48,7 @@ class CharacterMapController extends Controller
         $region = Region::find($region_id);
         $characters = $this->getCharacters($region_id);
 
-        return view('characterlocationmap::map', compact('characters', 'region'));
+        return view('characterlocationmap::region', compact('characters', 'region'));
     }
 
     /**
@@ -71,6 +71,7 @@ class CharacterMapController extends Controller
             }]);
         }
 
+        print_r($region_id);
         print_r($characters->toSql());
 
         return $characters->get()->sortBy(function ($character) {
