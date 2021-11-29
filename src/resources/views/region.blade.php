@@ -66,10 +66,15 @@
             let title;
             @foreach($characters as $character)
             try {
-                document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
-                title = document.createElement('title');
-                title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
-                document.querySelector("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
+                if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
+                    document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
+                    if(!!document.querySelector("#def{{ $character->location->solar_system->system_id }} title")) {
+                        document.querySelector("#def{{ $character->location->solar_system->system_id }} title").remove();
+                    }
+                    title = document.createElement('title');
+                    title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
+                    document.querySelector("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
+                }
             } catch(e) {
                 console.error(e);
             }        
