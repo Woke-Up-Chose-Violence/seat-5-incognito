@@ -45,9 +45,6 @@
         return doc.documentElement.textContent;
     }
 
-    var svg = document.getElementById('svgMap');
-    svg.outerHTML = htmlDecode(`{{ $regionSvg }}`);
-
     $('#region_list').on('change', (e) => {
         e.preventDefault();
         const newRegionId = e.target.value;
@@ -55,10 +52,10 @@
         document.location = route;
     });
 
-    var init = false;
+    var didInit = false;
     function init() {
-        if (init) return;
-        init = true;
+        if (didInit) return;
+        didInit = true;
         document.getElementById('legend').remove();
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
@@ -81,6 +78,9 @@
             @endforeach
         }, 500);
     };
+
+    var svg = document.getElementById('svgMap');
+    svg.outerHTML = htmlDecode(`{{ $regionSvg }}`);
 
     init();
 </script>
