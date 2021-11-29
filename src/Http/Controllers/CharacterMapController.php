@@ -46,9 +46,10 @@ class CharacterMapController extends Controller
     public function getRegionMap(int $region_id)
     {
         $region = Region::find($region_id);
+        $regionSvg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/SourceMaps/dotlan/' . join(explode($region->name, ' '), '_') . '.svg');
         $characters = $this->getCharacters($region_id);
 
-        return view('characterlocationmap::region', compact('characters', 'region'));
+        return view('characterlocationmap::region', compact('characters', 'region', 'regionSvg'));
     }
 
     /**
@@ -70,8 +71,6 @@ class CharacterMapController extends Controller
         if (!$user->can('character.location')) {
             $characters = $characters->whereIn('character_id', $user->characters()->get()->pluck('character_id'));
         }
-
-        print_r($characters->toSql());
 
         return $characters->get()->sortBy(function ($character) {
             if (!$character->location) {

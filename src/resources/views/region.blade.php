@@ -8,7 +8,7 @@
 
 <h3>{{ $region->name }}</h3>
 
-<div id='svgMap'></div>
+<div id='svgMap'>{{ $regionSvg }}</div>
 
 <ul class="list-group list-group-unbordered mb-3">
     @foreach($characters as $character)
