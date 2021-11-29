@@ -36,8 +36,7 @@
 <script>
     $('#region_list').on('change', (e) => {
         e.preventDefault();
-        const newRegionId = e.target.value;
-        let route = "{{ route('characterlocationmap.region', ['region_id' => '###']) }}".replace('###'), newRegionId);
+        let route = "{{ route('characterlocationmap.region', ['region_id' => '###']) }}".replace('###', e.target.value);
         document.location = route;
     });
 </script>
