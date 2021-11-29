@@ -65,7 +65,7 @@ class CharacterMapController extends Controller
             $characters = $user->characters();
         }
 
-        if ($region_id) {
+        if (!is_null($region_id)) {
             $characters->whereHas('location.solar_system.region', function ($sub_query) {
                 $sub_query->whereIn('region_id', '=', $region_id);
             });
