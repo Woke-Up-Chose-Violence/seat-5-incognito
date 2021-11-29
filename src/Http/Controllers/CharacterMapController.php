@@ -71,7 +71,7 @@ class CharacterMapController extends Controller
             });
         }
 
-        $characters->get()->sortBy(function ($character) {
+        return $characters->get()->sortBy(function ($character) {
             if (!$character->location) {
                 return 'Unknown';
             } elseif ($character->location->solar_system) {
@@ -79,7 +79,5 @@ class CharacterMapController extends Controller
             }
             return 'Other';
         });
-
-        return $characters->all();
     }
 }
