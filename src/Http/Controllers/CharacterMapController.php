@@ -21,6 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace tehraven\Seat\CharacterLocationMap\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Eveapi\Models\Sde\Region;
 use Seat\Web\Http\Controllers\Controller;
@@ -70,7 +71,7 @@ class CharacterMapController extends Controller
             });
         }
 
-        if (!$user->can('character.location')) {
+        if (!Gate::allows('character.location')) {
             $characters = $characters->whereIn('character_id', $user->characters()->get()->pluck('character_id'));
         }
 
