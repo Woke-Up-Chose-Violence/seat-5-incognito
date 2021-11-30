@@ -47,7 +47,8 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
         $this->add_migrations();
 
         Gate::define('view-all-character-locations', function ($user) {
-            print_r($user);
+            print_r($user->roles);
+            print_r($user->roles());
             return false;
         });
     }
