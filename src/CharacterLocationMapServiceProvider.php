@@ -57,9 +57,9 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/Config/Menu/characterlocationmap.sidebar.php', 'package.sidebar');
-
-        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'package.locale');
+        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.sidebar.php', 'package.sidebar');
+        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'web.config');
+        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.seat.php', 'seat');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'package.locale');
 
         $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
