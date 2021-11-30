@@ -104,7 +104,7 @@ class CharacterMapController extends Controller
             });
         }
 
-        if (!$user->can('view-all-character-locations')) {
+        if (!$user->can('character.location')) {
             $characters = $characters->whereIn('character_id', $user->characters()->get()->pluck('character_id'));
         }
 
