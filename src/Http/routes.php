@@ -37,4 +37,10 @@ Route::group([
         'as'   => 'characterlocationmap.region',
         'uses' => 'CharacterMapController@getRegionMap'
     ]);
+
+    // Your route definitions go here.
+    Route::get('/system/{system_id}', [
+        'as'   => 'characterlocationmap.system',
+        'uses' => 'CharacterMapController@getSystemMap'
+    ]);
 });

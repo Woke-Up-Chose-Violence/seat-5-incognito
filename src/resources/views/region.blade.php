@@ -53,7 +53,7 @@
     };
 
     var svg = document.getElementById('svgMap');
-    svg.outerHTML = htmlDecode(`{{ $regionSvg }}`);
+    svg.outerHTML = htmlDecode(`{{ $svg }}`);
 
     init();
 </script>

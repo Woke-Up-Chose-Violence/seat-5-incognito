@@ -45,8 +45,10 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
 
         $this->add_migrations();
 
-        // Uncomment this block to extend imported SDE tables
-        // $this->add_sde_tables();
+        Gate::define('view-all-character-locations', function ($user) {
+            print_r($user);
+            return false;
+        });
     }
 
     public function register()

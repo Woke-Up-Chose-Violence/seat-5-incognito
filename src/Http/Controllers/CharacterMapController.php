@@ -24,6 +24,7 @@ namespace tehraven\Seat\CharacterLocationMap\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Eveapi\Models\Sde\Region;
+use Seat\Eveapi\Models\Sde\SolarSystem;
 use Seat\Web\Http\Controllers\Controller;
 
 
@@ -34,36 +35,68 @@ use Seat\Web\Http\Controllers\Controller;
  */
 class CharacterMapController extends Controller
 {
+    private function getStatic(int $region_id = null, int $system_id = null)
+    {
+        $allRegions = Region::all()->sortBy('name');
+        $region = null;
+        $system = null;
+        $characters = $this->getCharacters($region_id, $system_id);
+        $svg = null;
+        if ($system_id) {
+            $system = SolarSystem::find($system_id);
+            $region = Region::find($system->region_id);
+        } elseif ($region_id) {
+            $region = Region::find($region_id);
+            $svg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/SourceMaps/dotlan/' . join('_', explode(' ', $region->name)) . '.svg');
+        }
+        return [
+            'allRegions' => $allRegions,
+            'characters' => $characters,
+            'region' => $region,
+            'system' => $system,
+            'svg' => $svg
+        ];
+    }
     /**
      * @return \Illuminate\View\View
      */
     public function getMap()
     {
-        $allRegions = Region::all()->sortBy('name');
-        $characters = $this->getCharacters();
+        $static = $this->getStatic();
 
-        return view('characterlocationmap::map', compact('allRegions', 'characters'));
+        return view('characterlocationmap::map', $static);
     }
 
     public function getRegionMap(int $region_id)
     {
-        $allRegions = Region::all()->sortBy('name');
-        $region = Region::find($region_id);
-        $regionSvg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/SourceMaps/dotlan/' . join('_', explode(' ', $region->name)) . '.svg');
-        $characters = $this->getCharacters($region_id);
+        $static = $this->getStatic($region_id);
 
-        return view('characterlocationmap::region', compact('allRegions', 'characters', 'region', 'regionSvg'));
+        return view('characterlocationmap::region', $static);
     }
+
+    public function getSystemMap(int $system_id)
+    {
+        $static = $this->getStatic(null, $system_id);
+
+        return view('characterlocationmap::system', $static);
+    }
+
 
     /**
      * @return array List of Characters Grouped by Location Type Keys
      */
-    private function getCharacters(int $region_id = null)
+    private function getCharacters(int $region_id = null, int $system_id = null)
     {
         $user = auth()->user();
         $characters = CharacterInfo::with('location', 'location.solar_system', 'location.solar_system.region');
 
-        if ($region_id) {
+        if ($system_id) {
+            $characters = $characters->whereHas('location.solar_system', function ($system) use ($system_id) {
+                if ($system_id) {
+                    $system->where('system_id', $system_id);
+                }
+            });
+        } elseif ($region_id) {
             $characters = $characters->whereHas('location.solar_system.region', function ($region) use ($region_id) {
                 if ($region_id) {
                     $region->where('region_id', $region_id);
@@ -71,7 +104,7 @@ class CharacterMapController extends Controller
             });
         }
 
-        if (!Gate::allows('character.location')) {
+        if (!$user->can('view-all-character-locations')) {
             $characters = $characters->whereIn('character_id', $user->characters()->get()->pluck('character_id'));
         }
 
