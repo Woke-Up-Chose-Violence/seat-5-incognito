@@ -51,26 +51,13 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'package.config');
+        $this->mergeConfigFrom(__DIR__ . '/Config/Menu/characterlocationmap.character.php', 'package.character.menu');
+        $this->mergeConfigFrom(__DIR__ . '/Config/Menu/characterlocationmap.sidebar.php', 'package.menu');
+
+        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'package.locale');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'package.locale');
 
-        // Overload sidebar with your package menu entries
-        $this->mergeConfigFrom(__DIR__ . '/Config/Menu/characterlocationmap.sidebar.php', 'package.sidebar');
-
-        // Uncomment this block to overload character menu
-        // $this->mergeConfigFrom(__DIR__ . '/Config/Menu/package.character.php', 'package.character.menu');
-
-        // Uncomment this block to overload corporation menu
-        // $this->mergeConfigFrom(__DIR__ . '/Config/Menu/package.corporation.php', 'package.corporation.menu');
-
-        // Register generic permissions
-        // $this->registerPermissions(__DIR__ . '/Config/Permissions/other.php', 'other');
-
-        // Uncomment this block to register character permissions
         $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
-
-        // Uncomment this block to register corporation permissions
-        // $this->registerPermissions(__DIR__ . '/Config/Permissions/corporation.php', 'corporation');
     }
 
     /**

@@ -20,15 +20,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 return [
-
     // Integrating with the SeAT menu is defined here.
     // Refer to the web package for a structure reference.
-    'Map' => [
-        'name' => 'character-map',
-        'label' => 'characterlocationmap::menu.main_level',
-        'plural' => false,
-        'icon' => 'fas fa-map-marker-check',
-        'route_segment' => 'characterlocationmap',
-        'route' => 'characterlocationmap.home',
-    ],
 ];
