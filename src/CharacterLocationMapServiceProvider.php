@@ -218,7 +218,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
                 continue;
             }
 
-            if (!Arr::exists($merging, $key)) {
+            if (!array_key_exists($key, $merging)) {
                 continue;
             }
 
