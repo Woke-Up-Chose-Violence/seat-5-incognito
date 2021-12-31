@@ -88,7 +88,7 @@ class CharacterMapController extends Controller
     private function getCharacters(int $region_id = null, int $system_id = null)
     {
         $user = auth()->user();
-        $characters = CharacterInfo::with('location', 'location.solar_system', 'location.solar_system.region');
+        $characters = CharacterInfo::with('location', 'location.solar_system', 'location.structure', 'location.station', 'location.solar_system.region');
 
         if ($system_id) {
             $characters = $characters->whereHas('location.solar_system', function ($system) use ($system_id) {
@@ -109,12 +109,11 @@ class CharacterMapController extends Controller
         }
 
         return $characters->get()->sortBy(function ($character) {
-            if (!$character->location) {
-                return 'Unknown';
+            if (!is_null($character->structure) || !is_null($character->station)) {
+                return 'ZZZ';
             } elseif ($character->location->solar_system) {
                 return $character->location->solar_system->name;
             }
-            return 'Other';
         });
     }
 }
