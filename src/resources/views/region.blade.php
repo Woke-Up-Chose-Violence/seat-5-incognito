@@ -33,7 +33,7 @@
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
         setTimeout(function() {
-            @foreach(array_filter($characters, function ($character) { return is_null($character->structure) && is_null($character->station); }) as $character)
+            @foreach(array_filter($characters, function ($character) { return is_null($character->location->structure) && is_null($character->location->station); }) as $character)
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
