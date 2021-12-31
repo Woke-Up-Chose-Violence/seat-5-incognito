@@ -85,7 +85,7 @@ class CharacterMapController extends Controller
     /**
      * @return array List of Characters Grouped by Location Type Keys
      */
-    private function getCharacters(int $region_id = null, int $system_id = null)
+    private function getCharacters(int $region_id = null, int $system_id = null): array
     {
         $user = auth()->user();
         $characters = CharacterInfo::with('location', 'location.solar_system', 'location.structure', 'location.station', 'location.solar_system.region');
@@ -114,6 +114,6 @@ class CharacterMapController extends Controller
             } elseif ($character->location->solar_system) {
                 return $character->location->solar_system->name;
             }
-        });
+        })->all();
     }
 }
