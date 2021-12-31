@@ -185,7 +185,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
      */
     public function getVersion(): string
     {
-        return '1.2.1';
+        return '1.2.2';
     }
 
     /**

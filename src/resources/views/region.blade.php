@@ -33,17 +33,11 @@
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
         setTimeout(function() {
-            let title;
             @foreach($characters as $character)
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = 'gray';
-                    if(!!document.querySelector("#def{{ $character->location->solar_system->system_id }} title")) {
-                        document.querySelector("#def{{ $character->location->solar_system->system_id }} title").remove();
-                    }
-                    title = document.createElement('title');
-                    title.textContent = '{{ $character->name }} ({{ $character->user->main_character->name }})';
-                    document.querySelector("#def{{ $character->location->solar_system->system_id }}").appendChild(title);
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = '<title>{{ $character->name }} ({{ $character->user->main_character->name }})</title>';
                 }
             } catch(e) {
                 console.error(e);
