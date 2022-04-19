@@ -24,7 +24,6 @@
                       </a>
 
                       <span class="id-to-name text-muted float-right">@include('web::partials.location', ['location' => $character->location])</span>
-                      <pre>{{ print_r($character, true) }}</pre>
                   </li>
               @endforeach
           </ul>
