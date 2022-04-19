@@ -33,7 +33,7 @@
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
         setTimeout(function() {
-            @foreach(array_filter($characters, function ($character) { return !$character->online->online; }) as $character)
+            @foreach(array_filter($characters, function ($character) { return !$character->online || !$character->online->online; }) as $character)
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#ff000047';
@@ -43,7 +43,7 @@
                 console.error(e);
             }        
             @endforeach
-            @foreach(array_filter($characters, function ($character) { return $character->online->online && !(is_null($character->location->structure) && is_null($character->location->station)); }) as $character)
+            @foreach(array_filter($characters, function ($character) { return $character->online && $character->online->online && !(is_null($character->location->structure) && is_null($character->location->station)); }) as $character)
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#0003ff47';
@@ -53,7 +53,7 @@
                 console.error(e);
             }        
             @endforeach
-            @foreach(array_filter($characters, function ($character) { return $character->online->online && is_null($character->location->structure) && is_null($character->location->station); }) as $character)
+            @foreach(array_filter($characters, function ($character) { return $character->online && $character->online->online && is_null($character->location->structure) && is_null($character->location->station); }) as $character)
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#adff2f';
