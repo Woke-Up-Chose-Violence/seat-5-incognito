@@ -47,7 +47,7 @@ class CharacterMapController extends Controller
             $region = Region::find($system->region_id);
         } elseif ($region_id) {
             $region = Region::find($region_id);
-            $svg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/SourceMaps/dotlan/' . join('_', explode(' ', $region->name)) . '.svg');
+            $svg = file_get_contents('https://raw.githubusercontent.com/Slazanger/SMT/master/EVEData/data/SourceMaps/dotlan/' . join('_', explode(' ', $region->name)) . '.svg');
         }
         return [
             'allRegions' => $allRegions,
