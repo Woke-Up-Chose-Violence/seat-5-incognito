@@ -38,8 +38,8 @@
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#ff000047';
                     const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
-                    const newInner = '{{ $character->name }} ({{ $character->user->main_character->name }}) - Offline\n' + (currentInner.replace('<title>', '').replace('</title>') || '');
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`;
+                    const newInner = '{{ $character->name }} ({{ $character->user->main_character->name }}) - Offline\n' + ((currentInner || '').replace('<title>', '').replace('</title>') || '');
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`.replace('undefined', '');
                 }
             } catch(e) {
                 console.error(e);
@@ -50,8 +50,8 @@
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#adff2f';
                     const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
-                    const newInner = '{{ $character->name }} ({{ $character->user->main_character->name }}) - In Space\n' + (currentInner.replace('<title>', '').replace('</title>') || '');
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`;
+                    const newInner = '{{ $character->name }} ({{ $character->user->main_character->name }}) - In Space\n' + ((currentInner || '').replace('<title>', '').replace('</title>') || '');
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`.replace('undefined', '');
                 }
             } catch(e) {
                 console.error(e);
@@ -62,8 +62,8 @@
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#0003ff47';
                     const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
-                    const newInner = '{{ $character->name }} ({{ $character->user->main_character->name }}) - Docked\n' + (currentInner.replace('<title>', '').replace('</title>') || '');
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`;
+                    const newInner = '{{ $character->name }} ({{ $character->user->main_character->name }}) - Docked\n' + ((currentInner || '').replace('<title>', '').replace('</title>') || '');
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`.replace('undefined', '');
                 }
             } catch(e) {
                 console.error(e);
