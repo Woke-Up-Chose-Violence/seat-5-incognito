@@ -37,17 +37,10 @@
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#ff000047';
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = '<title>{{ $character->name }} ({{ $character->user->main_character->name }})</title>';
-                }
-            } catch(e) {
-                console.error(e);
-            }        
-            @endforeach
-            @foreach(array_filter($characters, function ($character) { return $character->online && $character->online->online && !(is_null($character->location->structure) && is_null($character->location->station)); }) as $character)
-            try {
-                if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
-                    document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#0003ff47';
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = '<title>{{ $character->name }} ({{ $character->user->main_character->name }})</title>';
+                    const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
+                    const newInner = currentInner.replace('<title>', '').replace('</title>') + '\
+{{ $character->name }} ({{ $character->user->main_character->name }}) - Offline';
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = newInner;
                 }
             } catch(e) {
                 console.error(e);
@@ -57,7 +50,23 @@
             try {
                 if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
                     document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#adff2f';
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = '<title>{{ $character->name }} ({{ $character->user->main_character->name }})</title>';
+                    const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
+                    const newInner = currentInner.replace('<title>', '').replace('</title>') + '\
+{{ $character->name }} ({{ $character->user->main_character->name }}) - In Space';
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = newInner;
+                }
+            } catch(e) {
+                console.error(e);
+            }        
+            @endforeach
+            @foreach(array_filter($characters, function ($character) { return $character->online && $character->online->online && !(is_null($character->location->structure) && is_null($character->location->station)); }) as $character)
+            try {
+                if(!!document.querySelector("#rect{{ $character->location->solar_system->system_id }}")) {
+                    document.querySelector("#rect{{ $character->location->solar_system->system_id }}").style.fill = '#0003ff47';
+                    const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
+                    const newInner = currentInner.replace('<title>', '').replace('</title>') + '\
+{{ $character->name }} ({{ $character->user->main_character->name }}) - Docked';
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = newInner;
                 }
             } catch(e) {
                 console.error(e);
