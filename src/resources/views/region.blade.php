@@ -40,7 +40,7 @@
                     const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
                     const newInner = currentInner.replace('<title>', '').replace('</title>') + '\
 {{ $character->name }} ({{ $character->user->main_character->name }}) - Offline';
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = newInner;
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`;
                 }
             } catch(e) {
                 console.error(e);
@@ -53,7 +53,7 @@
                     const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
                     const newInner = currentInner.replace('<title>', '').replace('</title>') + '\
 {{ $character->name }} ({{ $character->user->main_character->name }}) - In Space';
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = newInner;
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`;
                 }
             } catch(e) {
                 console.error(e);
@@ -66,7 +66,7 @@
                     const currentInner = document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML;
                     const newInner = currentInner.replace('<title>', '').replace('</title>') + '\
 {{ $character->name }} ({{ $character->user->main_character->name }}) - Docked';
-                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = newInner;
+                    document.querySelector("use#sys{{ $character->location->solar_system->system_id }}").innerHTML = `<title>${newInner}</title>`;
                 }
             } catch(e) {
                 console.error(e);
