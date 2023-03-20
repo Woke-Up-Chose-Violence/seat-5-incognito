@@ -111,7 +111,7 @@ class CharacterMapController extends Controller
         return $characters->get()->sortBy(function ($character) {
             if (!is_null($character->structure) || !is_null($character->station)) {
                 return 'ZZZ';
-            } elseif ($character->location->solar_system) {
+            } elseif ($character->location && $character->location->solar_system) {
                 return $character->location->solar_system->name;
             }
         })->all();
