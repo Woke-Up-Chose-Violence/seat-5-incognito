@@ -37,8 +37,6 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
         // Uncomment this block to add API documentation
         // $this->add_api_endpoints();
 
-        $this->add_publications();
-
         $this->add_views();
 
         $this->add_translations();
