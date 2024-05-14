@@ -158,16 +158,6 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
     }
 
     /**
-     * Return the plugin installed version.
-     *
-     * @return string
-     */
-    public function getVersion(): string
-    {
-        return '2.0.0';
-    }
-
-    /**
      * Merge the given configuration with the existing configuration.
      *
      * @param  string  $path
