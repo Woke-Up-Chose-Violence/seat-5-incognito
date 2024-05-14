@@ -21,7 +21,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace tehraven\Seat\CharacterLocationMap;
 
-use Illuminate\Support\Facades\Gate;
 use Seat\Services\AbstractSeatPlugin;
 
 /**
@@ -45,19 +44,11 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
         $this->add_translations();
 
         $this->add_migrations();
-
-        /*
-        Gate::define('view-all-character-locations', function ($user) {
-            print_r($user->roles);
-            print_r($user->roles());
-            return false;
-        });
-        */
     }
 
     public function register()
     {
-        $this->mergeConfigRecursivelyFrom(__DIR__ . '/Config/characterlocationmap.sidebar.php', 'package.sidebar');
+        // $this->mergeConfigRecursivelyFrom(__DIR__ . '/Config/characterlocationmap.sidebar.php', 'package.sidebar');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'web.config');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.seat.php', 'seat');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'web.locale');
@@ -82,18 +73,6 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
             __DIR__ . '/Http/Resources',
             __DIR__ . '/Http/Controllers/Api/V2',
         ]);
-    }
-
-    /**
-     * Add content which must be published (generally, configuration files or static ones).
-     */
-    private function add_publications()
-    {
-        $this->publishes([
-            __DIR__ . '/resources/css' => public_path('web/css'),
-            __DIR__ . '/resources/img' => public_path('your-package/img'),
-            __DIR__ . '/resources/js' => public_path('your-package/js'),
-        ], ['public', 'seat']);
     }
 
     /**
@@ -185,7 +164,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
      */
     public function getVersion(): string
     {
-        return '1.2.3';
+        return '2.0.0';
     }
 
     /**

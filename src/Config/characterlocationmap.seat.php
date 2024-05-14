@@ -20,5 +20,5 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 */
 
 return [
-    'workers' => env('QUEUE_WORKERS', 10),
+    // 'workers' => env('QUEUE_WORKERS', 10),
 ];
