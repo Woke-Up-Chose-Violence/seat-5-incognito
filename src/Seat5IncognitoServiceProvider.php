@@ -24,6 +24,7 @@ namespace WokeUpChoseViolence\Seat5Incognito;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
 
 use Seat\Services\AbstractSeatPlugin;
+use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMemberAssets;
 
 /**
  * Class Seat5IncognitoServiceProvider.
@@ -111,6 +112,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     {
         $this->commands([
             CorpContracts::class,
+            CorpMemberAssets::class,
         ]);
     }
 
@@ -123,7 +125,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
      */
     public function getName(): string
     {
-        return 'Character Location Map';
+        return 'SeAT V5 Tools for Incognito Mode (corp)';
     }
 
     /**

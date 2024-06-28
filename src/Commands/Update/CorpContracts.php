@@ -22,6 +22,8 @@
 
  namespace WokeUpChoseViolence\Seat5Incognito\Commands\Update;
 
+use Carbon\Carbon;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 use Seat\Eveapi\Jobs\Contracts\Corporation\Bids as CorporationBids;
@@ -69,8 +71,10 @@ class CorpContracts extends Command implements Isolatable
     private function enqueueDetailedCorporationMemberAssetsJobs(string $corporation_id)
     {
         CorporationContract::where('corporation_id', $corporation_id)
-            ->whereHas('detail', function ($query) {
-                $query->where('status', '<>', 'deleted');
+            ->whereHas('detail', function (QueryBuilder $query) {
+                $query
+                    ->where('status', '<>', 'deleted')
+                    ->andWhere('date_issued', '>=', Carbon::now()->subDays(7));
             })
             ->chunk(200, function ($contracts) {
                 $token = null;

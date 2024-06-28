@@ -30,9 +30,9 @@ use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Models\User;
 
 /**
- * Class CorpContracts
+ * Class CorpMemberAssets
  */
-class CorpContracts extends Command implements Isolatable
+class CorpMemberAssets extends Command implements Isolatable
 {
     /**
      * @var string
