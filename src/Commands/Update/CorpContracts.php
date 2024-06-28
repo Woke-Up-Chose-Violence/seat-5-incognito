@@ -30,9 +30,7 @@ use Seat\Eveapi\Models\Contracts\CorporationContract;
 use Seat\Eveapi\Models\RefreshToken;
 
 /**
- * Class Contracts.
- *
- * @package Seat\Eveapi\Commands\Esi\Update
+ * Class CorpContracts
  */
 class CorpContracts extends Command implements Isolatable
 {
@@ -45,12 +43,6 @@ class CorpContracts extends Command implements Isolatable
      * @var string
      */
     protected $description = "Schedule update jobs for a corporation's contracts";
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->alert('Current Arguments: ' . json_encode($this->getDefinition()->getArguments()));
-    }
 
     /**
      * Execute the console command.
