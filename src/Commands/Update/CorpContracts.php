@@ -38,7 +38,7 @@ class CorpContracts extends Command
     /**
      * @var string
      */
-    protected $signature = 'bomb:contracts {corporation_id?* : Corporation ID to update contracts from}';
+    protected $signature = 'bomb:contracts {corporation_id : Corporation ID to update contracts from}';
 
     /**
      * @var string
