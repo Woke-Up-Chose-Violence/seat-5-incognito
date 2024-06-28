@@ -74,7 +74,6 @@ class CorpMemberAssets extends Command implements Isolatable
         })->get();
 
         $users->each(function (User $user) {
-            $this->warn('Pulling assets for ' . $user->main_character()->name);
             $user->all_characters()->each(function (CharacterInfo $character) {
                 Assets::dispatch($character->refresh_token());
             });
