@@ -1,6 +1,7 @@
 {
     "name": "woke-up-chose-violence/seat-5-incognito",
     "description": "Some tools for Incognito Mode corp and SeAT 5",
+    "type": "seat-plugin",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -15,15 +16,11 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {
-        "php": ">=8.2",
-        "eveseat/services": "^5.0",
-        "eveseat/web": "^5.0"
-    },
+    "require": {},
     "extra": {
         "laravel": {
             "providers": [
-                "WokeUpChoseViolence\\Seat5Incognito\\CharacterLocationMapServiceProvider"
+                "WokeUpChoseViolence\\Seat5Incognito\\Seat5IncognitoServiceProvider"
             ]
         }
     }

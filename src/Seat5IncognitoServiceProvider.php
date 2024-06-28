@@ -26,11 +26,11 @@ use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
 use Seat\Services\AbstractSeatPlugin;
 
 /**
- * Class CharacterLocationMapServiceProvider.
+ * Class Seat5IncognitoServiceProvider.
  *
  * @package WokeUpChoseViolence\Seat5Incognito
  */
-class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
+class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
 {
     public function boot()
     {
@@ -135,7 +135,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
      */
     public function getPackageRepositoryUrl(): string
     {
-        return 'https://github.com/tehraven/seat-character-location-map';
+        return 'https://github.com/Woke-Up-Chose-Violence/seat-5-incognito';
     }
 
     /**
@@ -147,7 +147,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistPackageName(): string
     {
-        return 'seat-character-location-map';
+        return 'seat-5-incognito';
     }
 
     /**
@@ -159,7 +159,7 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistVendorName(): string
     {
-        return 'tehraven';
+        return 'woke-up-chose-violence';
     }
 
     /**
