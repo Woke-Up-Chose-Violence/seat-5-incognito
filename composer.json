@@ -14,14 +14,25 @@
             "WokeUpChoseViolence\\Seat5Incognito\\": "src/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
-    "require": {},
+    "require": {
+        "eveseat/eveapi": "^5.0"
+    },
+    "require-dev": {
+        "php": "^8.1",
+        "laravel/framework": "^10.0"
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "WokeUpChoseViolence\\Seat5Incognito\\Seat5IncognitoServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
         }
     }
 }

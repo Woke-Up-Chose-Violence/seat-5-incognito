@@ -34,7 +34,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
 {
     public function boot()
     {
-        $this->addCommands();
+        $this->add_commands();
         $this->add_routes();
         $this->add_views();
         $this->add_translations();
@@ -107,7 +107,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     /**
      * Register cli commands.
      */
-    private function addCommands()
+    private function add_commands()
     {
         $this->commands([
             CorpContracts::class,

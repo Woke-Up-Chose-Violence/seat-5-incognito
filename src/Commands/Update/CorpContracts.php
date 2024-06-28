@@ -23,6 +23,7 @@
  namespace WokeUpChoseViolence\Seat5Incognito\Commands\Update;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\Isolatable;
 use Seat\Eveapi\Jobs\Contracts\Corporation\Bids as CorporationBids;
 use Seat\Eveapi\Jobs\Contracts\Corporation\Items as CorporationItems;
 use Seat\Eveapi\Models\Contracts\CorporationContract;
@@ -33,28 +34,35 @@ use Seat\Eveapi\Models\RefreshToken;
  *
  * @package Seat\Eveapi\Commands\Esi\Update
  */
-class CorpContracts extends Command
+class CorpContracts extends Command implements Isolatable
 {
     /**
      * @var string
      */
-    protected $signature = 'bomb:contracts {corporation_id : Corporation ID to update contracts from}';
+    protected $signature = 'bomb:corp-contract {corporationId}';
 
     /**
      * @var string
      */
     protected $description = "Schedule update jobs for a corporation's contracts";
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->alert('Current Arguments: ' . implode(';', $this->getDefinition()->getArguments()));
+    }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $corporation_id = $this->argument('corporation_id');
+        $corporation_id = $this->argument('corporationId');
 
         // in case requested contract are unknown, enqueue list jobs which will collect all contracts
         if (! $corporation_id) {
-            return;
+            $this->error('CorporationID argument is missing.');
+            return 1;
         }
 
         // collect contract from corporation related to asked contracts
