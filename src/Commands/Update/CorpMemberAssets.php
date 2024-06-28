@@ -70,7 +70,7 @@ class CorpMemberAssets extends Command implements Isolatable
     {
 
         $users = User::whereHas('refresh_tokens.affiliation.corporation', function (Builder $query) use ($corporation_id) {
-            $query->where('refresh_tokens.affiliation.corporation.corporation_id', $corporation_id);
+            $query->where('corporation_id', $corporation_id);
         })->get();
 
         $users->each(function (User $user) {
