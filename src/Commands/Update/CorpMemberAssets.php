@@ -22,9 +22,9 @@
 
  namespace WokeUpChoseViolence\Seat5Incognito\Commands\Update;
 
-use Doctrine\DBAL\Query\QueryBuilder;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
+use Illuminate\Database\Eloquent\Builder;
 use Seat\Eveapi\Jobs\Assets\Character\Assets;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Models\User;
@@ -69,7 +69,7 @@ class CorpMemberAssets extends Command implements Isolatable
     private function enqueueDetailedCorporationMemberAssetsJobs(string $corporation_id)
     {
 
-        $users = User::whereHas('refresh_tokens.affiliation.corporation', function (QueryBuilder $query) use ($corporation_id) {
+        $users = User::whereHas('refresh_tokens.affiliation.corporation', function (Builder $query) use ($corporation_id) {
             $query->where('refresh_tokens.affiliation.corporation.corporation_id', $corporation_id);
         })->get();
 
