@@ -37,7 +37,7 @@ class CorpContracts extends Command implements Isolatable
     /**
      * @var string
      */
-    protected $signature = 'bomb:corp-contract {corporationId}';
+    protected $signature = 'bomb:corp-contracts {corporationId}';
 
     /**
      * @var string
@@ -58,7 +58,7 @@ class CorpContracts extends Command implements Isolatable
         }
 
         // collect contract from corporation related to asked contracts
-        $this->enqueueDetailedCorporationContractsJobs($corporation_id);
+        $this->enqueueDetailedCorporationMemberAssetsJobs($corporation_id);
     }
 
     /**
@@ -66,9 +66,9 @@ class CorpContracts extends Command implements Isolatable
      *
      * @param  string  $corporation_id
      */
-    private function enqueueDetailedCorporationContractsJobs(string $corporation_id)
+    private function enqueueDetailedCorporationMemberAssetsJobs(string $corporation_id)
     {
-        CorporationContract::whereIn('corporation_id', $corporation_id)
+        CorporationContract::where('corporation_id', $corporation_id)
             ->whereHas('detail', function ($query) {
                 $query->where('status', '<>', 'deleted');
             })
