@@ -49,7 +49,7 @@ class CorpContracts extends Command implements Isolatable
     public function __construct()
     {
         parent::__construct();
-        $this->alert('Current Arguments: ' . implode(';', $this->getDefinition()->getArguments()));
+        $this->alert('Current Arguments: ' . json_encode($this->getDefinition()->getArguments()));
     }
 
     /**
