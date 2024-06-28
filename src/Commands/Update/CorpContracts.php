@@ -74,7 +74,7 @@ class CorpContracts extends Command implements Isolatable
             ->whereHas('detail', function (Builder $query) {
                 $query
                     ->where('status', '<>', 'deleted')
-                    ->andWhere('date_issued', '>=', Carbon::now()->subDays(7));
+                    ->where('date_issued', '>=', Carbon::now()->subDays(7));
             })
             ->chunk(200, function ($contracts) {
                 $token = null;
