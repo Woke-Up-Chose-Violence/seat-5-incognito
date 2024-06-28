@@ -75,7 +75,7 @@ class CorpMemberAssets extends Command implements Isolatable
 
         $users->each(function (User $user) {
             $user->all_characters()->each(function (CharacterInfo $character) {
-                Assets::dispatch($character->refresh_token());
+                Assets::dispatch($character->refresh_token);
             });
         });
     }
