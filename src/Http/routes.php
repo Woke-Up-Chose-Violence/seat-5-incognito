@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 // Namespace all of the routes for this package.
 Route::group([
-    'namespace'  => 'tehraven\Seat\CharacterLocationMap\Http\Controllers',
+    'namespace'  => 'WokeUpChoseViolence\Seat5Incognito\Http\Controllers',
     'prefix'     => 'locations',
     'middleware' => ['web', 'auth', 'locale'],
 ], function () {

@@ -19,28 +19,25 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace tehraven\Seat\CharacterLocationMap;
+namespace WokeUpChoseViolence\Seat5Incognito;
+
+use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
 
 use Seat\Services\AbstractSeatPlugin;
 
 /**
  * Class CharacterLocationMapServiceProvider.
  *
- * @package tehraven\Seat\CharacterLocationMap
+ * @package WokeUpChoseViolence\Seat5Incognito
  */
 class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
 {
     public function boot()
     {
+        $this->addCommands();
         $this->add_routes();
-
-        // Uncomment this block to add API documentation
-        // $this->add_api_endpoints();
-
         $this->add_views();
-
         $this->add_translations();
-
         $this->add_migrations();
     }
 
@@ -105,6 +102,16 @@ class CharacterLocationMapServiceProvider extends AbstractSeatPlugin
     private function add_migrations()
     {
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations/');
+    }
+
+    /**
+     * Register cli commands.
+     */
+    private function addCommands()
+    {
+        $this->commands([
+            CorpContracts::class,
+        ]);
     }
 
     /**

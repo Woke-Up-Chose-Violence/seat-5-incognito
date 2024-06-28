@@ -1,6 +1,6 @@
 {
-    "name": "tehraven/seat-character-location-map",
-    "description": "A Character Mapping Tool for SeAT (eveseat)",
+    "name": "WokeUpChoseViolence/seat-5-incognito",
+    "description": "Some tools for Incognito Mode corp and SeAT 5",
     "license": "GPL-3.0-or-later",
     "authors": [
         {
@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "tehraven\\Seat\\CharacterLocationMap\\": "src/"
+            "WokeUpChoseViolence\\Seat5Incognito\\": "src/"
         }
     },
     "minimum-stability": "dev",
@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "tehraven\\Seat\\CharacterLocationMap\\CharacterLocationMapServiceProvider"
+                "WokeUpChoseViolence\\Seat5Incognito\\CharacterLocationMapServiceProvider"
             ]
         }
     }
