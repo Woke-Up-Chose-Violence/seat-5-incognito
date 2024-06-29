@@ -21,10 +21,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace WokeUpChoseViolence\Seat5Incognito;
 
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
-
 use Seat\Services\AbstractSeatPlugin;
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMemberAssets;
+use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
+use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembers;
 
 /**
  * Class Seat5IncognitoServiceProvider.
@@ -112,7 +111,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     {
         $this->commands([
             CorpContracts::class,
-            CorpMemberAssets::class,
+            CorpMembers::class,
         ]);
     }
 

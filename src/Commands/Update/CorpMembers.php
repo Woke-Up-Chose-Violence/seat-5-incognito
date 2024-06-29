@@ -25,6 +25,7 @@
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 use Illuminate\Database\Eloquent\Builder;
+use Seat\Eveapi\Bus\Character;
 use Seat\Eveapi\Jobs\Assets\Character\Assets;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Models\User;
@@ -32,17 +33,17 @@ use Seat\Web\Models\User;
 /**
  * Class CorpMemberAssets
  */
-class CorpMemberAssets extends Command implements Isolatable
+class CorpMembers extends Command implements Isolatable
 {
     /**
      * @var string
      */
-    protected $signature = 'bomb:corp-member-assets {corporationId}';
+    protected $signature = 'bomb:corp-members {corporationId}';
 
     /**
      * @var string
      */
-    protected $description = "Schedule update jobs for a corporation's members' assets";
+    protected $description = "Schedule update jobs for a corporation's members";
 
     /**
      * Execute the console command.
@@ -58,7 +59,7 @@ class CorpMemberAssets extends Command implements Isolatable
         }
 
         // collect contract from corporation related to asked contracts
-        $this->enqueueDetailedCorporationMemberAssetsJobs($corporation_id);
+        $this->enqueueDetailedCorporationMemberJobs($corporation_id);
     }
 
     /**
@@ -66,7 +67,7 @@ class CorpMemberAssets extends Command implements Isolatable
      *
      * @param  string  $corporation_id
      */
-    private function enqueueDetailedCorporationMemberAssetsJobs(string $corporation_id)
+    private function enqueueDetailedCorporationMemberJobs(string $corporation_id)
     {
 
         $users = User::whereHas('refresh_tokens.affiliation.corporation', function (Builder $query) use ($corporation_id) {
@@ -75,7 +76,7 @@ class CorpMemberAssets extends Command implements Isolatable
 
         $users->each(function (User $user) {
             $user->all_characters()->each(function (CharacterInfo $character) {
-                Assets::dispatch($character->refresh_token);
+                (new Character($character->character_id, $character->refresh_token))->fire();
             });
         });
     }
