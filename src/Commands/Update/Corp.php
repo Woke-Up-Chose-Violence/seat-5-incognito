@@ -24,26 +24,22 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
-use Illuminate\Database\Eloquent\Builder;
-use Seat\Eveapi\Bus\Character;
-use Seat\Eveapi\Jobs\Assets\Character\Assets;
-use Seat\Eveapi\Models\Character\CharacterInfo;
-use Seat\Web\Models\User;
+use Seat\Eveapi\Models\RefreshToken;
 
 /**
  * Class CorpMemberAssets
  */
-class CorpMembers extends Command implements Isolatable
+class Corp extends Command implements Isolatable
 {
     /**
      * @var string
      */
-    protected $signature = 'bomb:corp-members {corporationId}';
+    protected $signature = 'bomb:corp {corporationId}';
 
     /**
      * @var string
      */
-    protected $description = "Schedule update jobs for a corporation's members";
+    protected $description = "Schedule update jobs for a corporation";
 
     /**
      * Execute the console command.
@@ -71,15 +67,16 @@ class CorpMembers extends Command implements Isolatable
      */
     private function enqueueDetailedCorporationJobs(string $corporation_id)
     {
-        $users = User::whereHas('refresh_tokens.affiliation.corporation', function (Builder $query) use ($corporation_id) {
-            $query->where('corporation_id', $corporation_id);
-        })->get();
-
-        $users->each(function (User $user) {
-            $user->all_characters()->each(function (CharacterInfo $character) {
-                $this->call('esi:update:characters', ['character_id' => $character->character_id]);
-                $this->call('esi:update:notifications', ['character_id' => $character->character_id]);
+        $token = RefreshToken::whereHas('character', function ($query) use ($corporation_id) {
+            $query->whereHas('affiliation', function ($query) use ($corporation_id) {
+                $query->where('corporation_id', $corporation_id);
             });
-        });
+            $query->whereHas('corporation_roles', function ($query) {
+                $query->where('scope', 'roles');
+                $query->where('role', 'Director');
+            });
+        })->first();
+
+        $this->call('esi:update:corporations', ['character_id' => $token->character_id]);
     }
 }
