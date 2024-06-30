@@ -75,9 +75,9 @@ class CorpMembers extends Command implements Isolatable
             $query->where('corporation_id', $corporation_id);
         })->get();
 
-        $test = $users->each(function (User $user) {
+        $users->each(function (User $user) {
             $user->all_characters()->each(function (CharacterInfo $character) {
-                $this->call('esi:update:characters', [$character->character_id]);
+                $this->call('esi:update:characters', ['character_id' => $character->character_id]);
             });
         });
     }
