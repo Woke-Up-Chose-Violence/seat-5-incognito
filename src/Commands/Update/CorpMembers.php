@@ -55,11 +55,13 @@ class CorpMembers extends Command implements Isolatable
         // in case requested contract are unknown, enqueue list jobs which will collect all contracts
         if (! $corporation_id) {
             $this->error('CorporationID argument is missing.');
-            return 1;
+            return $this::FAILURE;
         }
 
         // collect contract from corporation related to asked contracts
         $this->enqueueDetailedCorporationMemberJobs($corporation_id);
+
+        return $this::SUCCESS;
     }
 
     /**
@@ -69,14 +71,13 @@ class CorpMembers extends Command implements Isolatable
      */
     private function enqueueDetailedCorporationMemberJobs(string $corporation_id)
     {
-
         $users = User::whereHas('refresh_tokens.affiliation.corporation', function (Builder $query) use ($corporation_id) {
             $query->where('corporation_id', $corporation_id);
         })->get();
 
-        $users->each(function (User $user) {
+        $test = $users->each(function (User $user) {
             $user->all_characters()->each(function (CharacterInfo $character) {
-                (new Character($character->character_id, $character->refresh_token))->fire();
+                $this->call('esi:update:characters', [$character->character_id]);
             });
         });
     }
