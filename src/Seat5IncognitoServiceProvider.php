@@ -25,6 +25,7 @@ use Seat\Services\AbstractSeatPlugin;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\Corp;
+use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersOnline;
 
 /**
  * Class Seat5IncognitoServiceProvider.
@@ -111,9 +112,10 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     private function add_commands()
     {
         $this->commands([
-            CorpContracts::class,
-            CorpMembers::class,
             Corp::class,
+            CorpMembers::class,
+            CorpContracts::class,
+            CorpMembersOnline::class,
         ]);
     }
 
