@@ -25,8 +25,6 @@
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\Isolatable;
 use Illuminate\Database\Eloquent\Builder;
-use Seat\Eveapi\Bus\Character;
-use Seat\Eveapi\Jobs\Assets\Character\Assets;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Models\User;
 
