@@ -21,7 +21,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace WokeUpChoseViolence\Seat5Incognito\Http\Controllers;
 
-use Illuminate\Support\Facades\Gate;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Eveapi\Models\Sde\Region;
 use Seat\Eveapi\Models\Sde\SolarSystem;
@@ -105,15 +104,14 @@ class CharacterMapController extends Controller
         }
 
         if (!$user->can('character.location')) {
-            $characters = $characters->whereIn('character_id', $user->characters()->get()->pluck('character_id'));
+            $characters = $characters->whereIn('character_id', $user->all_characters);
         }
 
-        return $characters->get()->sortBy(function ($character) {
-            if (!is_null($character->structure) || !is_null($character->station)) {
-                return 'ZZZ';
-            } elseif ($character->location && $character->location->solar_system) {
+        return $characters->get()->sortBy(function (CharacterInfo $character) {
+            if ($character->location && $character->location->solar_system) {
                 return $character->location->solar_system->name;
             }
+            return $character->name;
         })->all();
     }
 }

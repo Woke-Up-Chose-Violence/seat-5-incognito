@@ -27,6 +27,7 @@ use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\Corp;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersLocations;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersOnline;
+use WokeUpChoseViolence\Seat5Incognito\Database\CorpJobSeeders;
 
 /**
  * Class Seat5IncognitoServiceProvider.
@@ -52,6 +53,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'web.locale');
 
         $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
+        $this->registerDatabaseSeeders(CorpJobSeeders::class);
     }
 
     /**
