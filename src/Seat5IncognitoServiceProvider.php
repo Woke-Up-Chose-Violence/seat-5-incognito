@@ -25,6 +25,7 @@ use Seat\Services\AbstractSeatPlugin;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\Corp;
+use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersLocations;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersOnline;
 
 /**
@@ -116,6 +117,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
             CorpMembers::class,
             CorpContracts::class,
             CorpMembersOnline::class,
+            CorpMembersLocations::class,
         ]);
     }
 
