@@ -27,8 +27,8 @@ class CorpJobSeeders extends AbstractScheduleSeeder {
                 'ping_after' => null,
             ],
             [   
-                'command' => 'bomb:corp-members-locations '.self::$CORP_VPN,
-                'expression' => '*/15 * * * *',
+                'command' => 'bomb:corp-members-online '.self::$CORP_VPN,
+                'expression' => '5-59/30 * * * *',
                 'allow_overlap' => false,
                 'allow_maintenance' => false,
                 'ping_before' => true,

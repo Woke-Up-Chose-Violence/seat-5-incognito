@@ -43,6 +43,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
         $this->add_views();
         $this->add_translations();
         $this->add_migrations();
+        $this->registerDatabaseSeeders(CorpJobSeeders::class);
     }
 
     public function register()
