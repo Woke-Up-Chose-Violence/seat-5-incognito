@@ -1,32 +1,15 @@
 <?php
-/**
- * This file is part of slackbot and provide user synchronization between both SeAT and a Slack Team
- *
- * Copyright (C) 2016, 2017, 2018, 2019  Loïc Leuilliot <loic.leuilliot@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+
+namespace WokeUpChoseViolence\Seat5Incognito\Database\Migrations;
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 use Seat\Services\Models\Schedule;
 
-class ScheduleSeederV300 extends Migration
+return new class extends Migration
 {
     static $CORP_URHI = 98427836;
     static $CORP_VPN = 98491871;
-    protected $schedule = [
+    static $seeders = [
         [   
             'command' => 'bomb:corp '.self::$CORP_VPN,
             'expression' => '0 2 * * *',
@@ -59,13 +42,15 @@ class ScheduleSeederV300 extends Migration
             'ping_before' => true,
             'ping_after' => null,
         ]
-    ];
-
-    public function up()
+        ];
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schedule::whereIn('command', ['seat:buckets:update'])->delete();
 
-        foreach ($this->schedule as $job) {
+        foreach (self::$seeders as $job) {
             $existing = Schedule::where('command', $job['command'])
                           ->first();
 
@@ -80,4 +65,19 @@ class ScheduleSeederV300 extends Migration
             }
         }
     }
-}
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        foreach (self::$seeders as $job) {
+            $existing = Schedule::where('command', $job['command'])
+                          ->first();
+
+            if ($existing) {
+                $existing->delete();
+            }
+        }
+    }
+};

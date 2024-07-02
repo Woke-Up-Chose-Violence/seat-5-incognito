@@ -11,7 +11,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "WokeUpChoseViolence\\Seat5Incognito\\": "src/"
+            "WokeUpChoseViolence\\Seat5Incognito\\": "src/",
+            "WokeUpChoseViolence\\Seat5Incognito\\Database\\Migrations": "src/database/migrations"
         }
     },
     "minimum-stability": "stable",
