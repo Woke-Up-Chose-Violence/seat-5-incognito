@@ -10,7 +10,7 @@ return new class extends Migration
     // public static $CORP_URHI = 98427836;
     // public static $CORP_VPN = 98491871;
     
-    public static $SEEDERS = [
+    public static $seeders = [
         [   
             'command' => 'bomb:corp ' . 98491871,
             'expression' => '0 2 * * *',
