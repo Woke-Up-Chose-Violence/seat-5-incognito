@@ -22,11 +22,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace WokeUpChoseViolence\Seat5Incognito;
 
 use Seat\Services\AbstractSeatPlugin;
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpContracts;
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembers;
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\Corp;
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersLocations;
-use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersOnline;
+use WokeUpChoseViolence\Seat5Incognito\Commands\CorpContracts;
+use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembers;
+use WokeUpChoseViolence\Seat5Incognito\Commands\Corp;
+use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersLocations;
+use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersOnline;
 
 /**
  * Class Seat5IncognitoServiceProvider.

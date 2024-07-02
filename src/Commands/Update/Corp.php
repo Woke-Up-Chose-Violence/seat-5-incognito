@@ -1,82 +1,30 @@
 <?php
 
-/*
- * This file is part of SeAT
- *
- * Copyright (C) 2015 to 2022 Leon Jacobs
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- */
+namespace WokeUpChoseViolence\Seat5Incognito\Commands;
 
- namespace WokeUpChoseViolence\Seat5Incognito\Commands\Update;
-
-use Illuminate\Console\Command;
-use Illuminate\Contracts\Console\Isolatable;
-use Seat\Eveapi\Models\RefreshToken;
+use WokeUpChoseViolence\Seat5Incognito\Commands\BaseCorpCommand;
 
 /**
- * Class CorpMemberAssets
+ * Class Corp
  */
-class Corp extends Command implements Isolatable
+class Corp extends BaseCorpCommand
 {
-    /**
-     * @var string
-     */
     protected $signature = 'bomb:corp {corporationId}';
 
-    /**
-     * @var string
-     */
     protected $description = "Schedule update jobs for a corporation";
 
-    /**
-     * Execute the console command.
-     */
-    public function handle()
-    {
-        $corporation_id = $this->argument('corporationId');
 
-        // in case requested contract are unknown, enqueue list jobs which will collect all contracts
-        if (! $corporation_id) {
-            $this->error('CorporationID argument is missing.');
-            return $this::FAILURE;
+    protected function handleCommand($corporation_id): int
+    {
+        $corporationRefreshToken = $this->getCorporationDirectorToken($corporation_id);
+
+        if (is_null($corporationRefreshToken)) {
+            $this->warn(sprintf('No valid token for Corporation %d'));
+            return self::FAILURE;
         }
 
-        // collect contract from corporation related to asked contracts
-        $this->enqueueDetailedCorporationJobs($corporation_id);
+        $this->call('esi:update:corporations', ['character_id' => $corporationRefreshToken->character_id]);
 
-        return $this::SUCCESS;
-    }
-
-    /**
-     * Enqueue relevant detail jobs for requested corporation contracts.
-     *
-     * @param  string  $corporation_id
-     */
-    private function enqueueDetailedCorporationJobs(string $corporation_id)
-    {
-        $token = RefreshToken::whereHas('character', function ($query) use ($corporation_id) {
-            $query->whereHas('affiliation', function ($query) use ($corporation_id) {
-                $query->where('corporation_id', $corporation_id);
-            });
-            $query->whereHas('corporation_roles', function ($query) {
-                $query->where('scope', 'roles');
-                $query->where('role', 'Director');
-            });
-        })->first();
-
-        $this->call('esi:update:corporations', ['character_id' => $token->character_id]);
+        return self::SUCCESS;
     }
 }
