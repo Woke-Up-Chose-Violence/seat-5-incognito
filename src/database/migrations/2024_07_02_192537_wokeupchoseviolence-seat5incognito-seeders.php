@@ -53,18 +53,10 @@ return new class extends Migration
         Schedule::whereIn('command', ['seat:buckets:update'])->delete();
 
         foreach (self::$seeders as $job) {
-            $existing = Schedule::where('command', $job['command'])
-                          ->first();
-
-            if ($existing) {
-                $existing->update([
-                    'expression' => $job['expression'],
-                ]);
-            }
-
-            if (! $existing) {
-                DB::table('schedules')->insert($job);
-            }
+            Schedule::firstOrCreate(
+                ['command' => $job['command']],
+                $job
+            )->update($job);
         }
     }
 
@@ -74,12 +66,7 @@ return new class extends Migration
     public function down(): void
     {
         foreach (self::$seeders as $job) {
-            $existing = Schedule::where('command', $job['command'])
-                          ->first();
-
-            if ($existing) {
-                $existing->delete();
-            }
+            Schedule::where('command', $job['command'])->deleteQuietly();
         }
     }
 };
