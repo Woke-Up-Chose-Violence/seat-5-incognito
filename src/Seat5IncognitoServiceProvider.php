@@ -43,7 +43,6 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
         $this->add_views();
         $this->add_translations();
         $this->add_migrations();
-        $this->registerDatabaseSeeders(CorpJobSeeders::class);
     }
 
     public function register()
@@ -52,9 +51,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'web.config');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.seat.php', 'seat');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'web.locale');
-
         $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
-        $this->registerDatabaseSeeders(CorpJobSeeders::class);
     }
 
     /**
