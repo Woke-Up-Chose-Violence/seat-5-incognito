@@ -27,7 +27,6 @@ use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\Corp;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersLocations;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Update\CorpMembersOnline;
-use WokeUpChoseViolence\Seat5Incognito\Database\CorpJobSeeders;
 
 /**
  * Class Seat5IncognitoServiceProvider.
