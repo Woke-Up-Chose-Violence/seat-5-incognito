@@ -5,6 +5,7 @@ namespace WokeUpChoseViolence\Seat5Incognito;
 use Seat\Eveapi\Models\Character\CharacterNotification;
 use Seat\Eveapi\Models\Contracts\ContractDetail;
 use Seat\Services\AbstractSeatPlugin;
+use Seat\Web\Models\User;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpContracts;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Corp;
@@ -12,6 +13,7 @@ use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersLocations;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersOnline;
 use WokeUpChoseViolence\Seat5Incognito\Observers\CharacterNotificationObserver;
 use WokeUpChoseViolence\Seat5Incognito\Observers\ContractDetailObserver;
+use WokeUpChoseViolence\Seat5Incognito\Observers\UserObserver;
 
 /**
  * Class Seat5IncognitoServiceProvider.
@@ -99,6 +101,8 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
         CharacterNotification::observe(CharacterNotificationObserver::class);
 
         ContractDetail::observe(ContractDetailObserver::class);
+
+        User::observe(UserObserver::class);
     }
 
     /**
