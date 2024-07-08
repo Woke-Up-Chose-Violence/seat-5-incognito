@@ -60,7 +60,11 @@ class CorporationContracts extends AbstractAuthCorporationJob
 
             $contracts = $response->getBody();
 
-            collect($contracts)->each(function ($contract) {
+            $collection = collect($contracts);
+
+            logger()->info('CorporationContracts Found ' . $collection->count() . ' Contracts');
+
+            $collection->each(function ($contract) {
                 // Update or create the contract details.
                 $model = ContractDetail::firstOrNew([
                     'contract_id' => $contract->contract_id,
