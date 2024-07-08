@@ -8,6 +8,7 @@ use Seat\Eveapi\Jobs\Contracts\Corporation\Bids as CorporationBids;
 use Seat\Eveapi\Jobs\Contracts\Corporation\Items as CorporationItems;
 use Seat\Eveapi\Models\Contracts\CorporationContract;
 use WokeUpChoseViolence\Seat5Incognito\Commands\BaseCorpCommand;
+use WokeUpChoseViolence\Seat5Incognito\Jobs\CorporationContracts;
 
 /**
  * Class CorpContracts
@@ -26,6 +27,8 @@ class CorpContracts extends BaseCorpCommand
             $this->warn(sprintf('No valid token for Corporation %d'));
             return self::FAILURE;
         }
+
+        CorporationContracts::dispatch($corporation_id, $corporationRefreshToken);
 
         CorporationContract::where('corporation_id', $corporation_id)
             ->whereHas('detail', function (Builder $query) {
