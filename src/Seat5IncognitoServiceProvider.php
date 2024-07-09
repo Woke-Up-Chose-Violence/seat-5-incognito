@@ -46,7 +46,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
      */
     private function add_translations()
     {
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'characterlocationmap');
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'woke-up-chose-violence');
     }
 
     /**
@@ -54,7 +54,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
      */
     private function add_views()
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'characterlocationmap');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'woke-up-chose-violence');
     }
 
     /**

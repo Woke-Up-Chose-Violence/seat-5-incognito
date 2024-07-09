@@ -14,7 +14,7 @@ return [
                 'label'             => 'woke-up-chose-violence::menu.character_map',
                 'icon'              => 'fas fa-map-marker',
                 'plural'            => false,
-                'permission'        => 'woke-up-chose-violence.character_map',
+                'permission'        => 'woke-up-chose-violence.view', // Everyone can see this, the controller will filter appropriately, itself.
                 'route'             => 'woke-up-chose-violence.home',
             ],
         ]

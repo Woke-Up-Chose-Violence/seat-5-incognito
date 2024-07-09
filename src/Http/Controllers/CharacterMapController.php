@@ -63,21 +63,21 @@ class CharacterMapController extends Controller
     {
         $static = $this->getStatic();
 
-        return view('characterlocationmap::map', $static);
+        return view('woke-up-chose-violence::map', $static);
     }
 
     public function getRegionMap(int $region_id)
     {
         $static = $this->getStatic($region_id);
 
-        return view('characterlocationmap::region', $static);
+        return view('woke-up-chose-violence::region', $static);
     }
 
     public function getSystemMap(int $system_id)
     {
         $static = $this->getStatic(null, $system_id);
 
-        return view('characterlocationmap::system', $static);
+        return view('woke-up-chose-violence::system', $static);
     }
 
 
@@ -103,7 +103,7 @@ class CharacterMapController extends Controller
             });
         }
 
-        if (!$user->can('character.location')) {
+        if (!$user->can('woke-up-chose-violence.character_map')) {
             $characters = $characters->whereIn('character_id', $user->all_characters);
         }
 
