@@ -2,12 +2,13 @@
 
 return [
     [
-        'name' => 'character-map',
-        'label' => 'characterlocationmap::menu.main_level',
-        'permission'     => 'character.location',
-        'plural' => false,
-        'icon' => 'fas fa-map-marker',
-        'route_segment' => 'characterlocationmap',
-        'route' => 'characterlocationmap.home',
+        'name'              => 'character-map',
+        'label'             => 'characterlocationmap::menu.main_level',
+        'permission'        => 'character.location',
+        'highlight_view'    => 'character-map',
+        'plural'            => false,
+        'icon'              => 'fas fa-map-marker',
+        'route_segment'     => 'characterlocationmap',
+        'route'             => 'characterlocationmap.home',
     ],
 ];
