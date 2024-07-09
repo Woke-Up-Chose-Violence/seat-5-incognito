@@ -7,9 +7,9 @@ use Seat\Eveapi\Models\Contracts\ContractDetail;
 use Seat\Notifications\Models\Integration;
 use Seat\Notifications\Services\Discord\Messages\DiscordEmbed;
 use Seat\Notifications\Services\Discord\Messages\DiscordMessage;
-use WokeUpChoseViolence\Seat5Incognito\Classes\VPNClassVars;
+use WokeUpChoseViolence\Seat5Incognito\Commands\BaseCorpObserver;
 
-class ContractDetailObserver extends VPNClassVars
+class ContractDetailObserver extends BaseCorpObserver
 {
     protected function weCareAboutThis(ContractDetail $contract)
     {
