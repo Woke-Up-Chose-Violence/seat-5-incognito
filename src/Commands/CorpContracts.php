@@ -34,7 +34,7 @@ class CorpContracts extends BaseCorpCommand
             ->whereHas('detail', function (Builder $query) {
                 $query
                     ->where('status', '<>', 'deleted')
-                    ->where('date_issued', '>=', Carbon::now()->subDays(7));
+                    ->where('date_issued', '>=', Carbon::now()->subMinutes(30));
             })
             ->chunk(200, function ($contracts) use ($corporationRefreshToken) {
                 foreach ($contracts as $contract) {

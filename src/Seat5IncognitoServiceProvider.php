@@ -34,7 +34,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/Config/package.character.menu.php', 'package.character.menu');
+        $this->mergeConfigRecursivelyFrom(__DIR__ . '/Config/package.character.menu.php', 'package.character.menu');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'web.config');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.seat.php', 'seat');
         $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'web.locale');
@@ -165,5 +165,19 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     public function getPackagistVendorName(): string
     {
         return 'woke-up-chose-violence';
+    }
+
+    /**
+     * Merge the given configuration with the existing configuration.
+     *
+     * @param  string  $path
+     * @param  string  $key
+     * @return void
+     */
+    protected function mergeConfigRecursivelyFrom($path, $key)
+    {
+        $config = $this->app['config']->get($key, []);
+
+        $this->app['config']->set($key, array_merge_recursive(require $path, $config));
     }
 }
