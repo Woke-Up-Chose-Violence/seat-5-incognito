@@ -7,7 +7,7 @@ use Seat\Eveapi\Models\Contracts\ContractDetail;
 use Seat\Notifications\Models\Integration;
 use Seat\Notifications\Services\Discord\Messages\DiscordEmbed;
 use Seat\Notifications\Services\Discord\Messages\DiscordMessage;
-use WokeUpChoseViolence\Seat5Incognito\Commands\BaseCorpObserver;
+use WokeUpChoseViolence\Seat5Incognito\Observers\BaseCorpObserver;
 
 class ContractDetailObserver extends BaseCorpObserver
 {

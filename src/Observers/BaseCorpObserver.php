@@ -1,6 +1,6 @@
 <?php
 
-namespace WokeUpChoseViolence\Seat5Incognito\Commands;
+namespace WokeUpChoseViolence\Seat5Incognito\Observers;
 
 /**
  * Class BaseCorpCommand
