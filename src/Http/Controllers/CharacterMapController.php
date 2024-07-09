@@ -25,7 +25,7 @@ use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Eveapi\Models\Sde\Region;
 use Seat\Eveapi\Models\Sde\SolarSystem;
 use Seat\Web\Http\Controllers\Controller;
-
+use Seat\Web\Models\User;
 
 /**
  * Class CharacterMapController.
@@ -86,6 +86,9 @@ class CharacterMapController extends Controller
      */
     private function getCharacters(int $region_id = null, int $system_id = null): array
     {
+        /**
+         * @var User $user
+         */
         $user = auth()->user();
         $characters = CharacterInfo::with('location', 'location.solar_system', 'location.structure', 'location.station', 'location.solar_system.region', 'online');
 
@@ -104,7 +107,7 @@ class CharacterMapController extends Controller
         }
 
         if (!$user->can('woke-up-chose-violence.character_map')) {
-            $characters = $characters->whereIn('character_id', $user->all_characters);
+            $characters = $characters->whereIn('character_id', $user->characters()->pluck('character_id'));
         }
 
         return $characters->get()->sortBy(function (CharacterInfo $character) {
