@@ -1,25 +1,7 @@
 <?php
-/*
-This file is part of SeAT
 
-Copyright (C) 2015 to 2020  Leon Jacobs
+use Illuminate\Support\Facades\Route;
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-*/
-
-// Namespace all of the routes for this package.
 Route::group([
     'namespace'  => 'WokeUpChoseViolence\Seat5Incognito\Http\Controllers',
     'prefix'     => 'locations',
@@ -28,19 +10,19 @@ Route::group([
 
     // Your route definitions go here.
     Route::get('/', [
-        'as'   => 'characterlocationmap.home',
+        'as'   => 'woke-up-chose-violence.home',
         'uses' => 'CharacterMapController@getMap'
     ]);
 
     // Your route definitions go here.
     Route::get('/region/{region_id}', [
-        'as'   => 'characterlocationmap.region',
+        'as'   => 'woke-up-chose-violence.region',
         'uses' => 'CharacterMapController@getRegionMap'
     ]);
 
     // Your route definitions go here.
     Route::get('/system/{system_id}', [
-        'as'   => 'characterlocationmap.system',
+        'as'   => 'woke-up-chose-violence.system',
         'uses' => 'CharacterMapController@getSystemMap'
     ]);
 });
