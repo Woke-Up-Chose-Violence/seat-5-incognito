@@ -107,7 +107,7 @@ class CharacterMapController extends Controller
         }
 
         if (!$user->can('woke-up-chose-violence.character_map')) {
-            $characters = $characters->whereIn('character_id', $user->characters()->pluck('character_id'));
+            $characters = $user->characters()->with('location', 'location.solar_system', 'location.structure', 'location.station', 'location.solar_system.region', 'online');
         }
 
         return $characters->get()->sortBy(function (CharacterInfo $character) {
