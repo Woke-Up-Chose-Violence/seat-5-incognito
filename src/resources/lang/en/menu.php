@@ -21,6 +21,6 @@
  */
 
 return [
-    'main_level' => 'Character Map',
-    'sub_level' => 'Map',
+    'main_level' => 'Alliance Tools',
+    'character_map' => 'Map',
 ];

@@ -21,6 +21,8 @@
  */
 
 return [
-    'character_permission_location_label' => 'Character Location Permission',
-    'character_permission_location_description' => 'Allows seeing characters last-seen location',
+    'permission_label' => 'Alliance Tools Category Access',
+    'permission_description' => 'Allows seeing the entire Alliance Tools category in SeAT',
+    'character_map_permission_label' => 'Alliance Tool - Character Map - Access',
+    'character_map_permission_description' => 'Allows seeing characters last-seen location',
 ];

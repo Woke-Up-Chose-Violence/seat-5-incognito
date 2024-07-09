@@ -15,11 +15,6 @@ use WokeUpChoseViolence\Seat5Incognito\Observers\CharacterNotificationObserver;
 use WokeUpChoseViolence\Seat5Incognito\Observers\ContractDetailObserver;
 use WokeUpChoseViolence\Seat5Incognito\Observers\UserObserver;
 
-/**
- * Class Seat5IncognitoServiceProvider.
- *
- * @package WokeUpChoseViolence\Seat5Incognito
- */
 class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
 {
     public function boot()
@@ -34,12 +29,8 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/Config/package.character.menu.php', 'package.character.menu');
-        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.config.php', 'web.config');
-        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.seat.php', 'seat');
-        $this->mergeConfigFrom(__DIR__ . '/Config/characterlocationmap.locale.php', 'web.locale');
-        
-        $this->registerPermissions(__DIR__ . '/Config/Permissions/character.php', 'character');
+        $this->mergeConfigFrom(__DIR__ . '/Config/package.sidebar.php', 'package.sidebar');        
+        $this->registerPermissions(__DIR__ . '/Config/woke-up-chose-violence.permissions.php', 'woke-up-chose-violence');
     }
 
     /**
@@ -48,17 +39,6 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     private function add_routes()
     {
         $this->loadRoutesFrom(__DIR__ . '/Http/routes.php');
-    }
-
-    /**
-     * Import API annotations used to generate Swagger documentation (using Open Api Specifications syntax).
-     */
-    private function add_api_endpoints()
-    {
-        $this->registerApiAnnotationsPath([
-            __DIR__ . '/Http/Resources',
-            __DIR__ . '/Http/Controllers/Api/V2',
-        ]);
     }
 
     /**
@@ -75,16 +55,6 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
     private function add_views()
     {
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'characterlocationmap');
-    }
-
-    /**
-     * Add SDE tables to be imported.
-     */
-    private function add_sde_tables()
-    {
-        $this->registerSdeTables([
-            'mapJumps',
-        ]);
     }
 
     /**
@@ -119,49 +89,21 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
         ]);
     }
 
-    /**
-     * Return the plugin public name as it should be displayed into settings.
-     *
-     * @return string
-     * @example SeAT Web
-     *
-     */
     public function getName(): string
     {
-        return 'SeAT V5 Tools for Incognito Mode (corp)';
+        return 'SeAT for Woke Up Chose Violence (alliance)';
     }
 
-    /**
-     * Return the plugin repository address.
-     *
-     * @example https://github.com/eveseat/web
-     *
-     * @return string
-     */
     public function getPackageRepositoryUrl(): string
     {
         return 'https://github.com/Woke-Up-Chose-Violence/seat-5-incognito';
     }
 
-    /**
-     * Return the plugin technical name as published on package manager.
-     *
-     * @return string
-     * @example web
-     *
-     */
     public function getPackagistPackageName(): string
     {
         return 'seat-5-incognito';
     }
 
-    /**
-     * Return the plugin vendor tag as published on package manager.
-     *
-     * @return string
-     * @example eveseat
-     *
-     */
     public function getPackagistVendorName(): string
     {
         return 'woke-up-chose-violence';
