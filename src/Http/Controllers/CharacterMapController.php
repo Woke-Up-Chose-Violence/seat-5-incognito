@@ -91,6 +91,7 @@ class CharacterMapController extends Controller
          */
         $user = auth()->user();
         $characters = CharacterInfo::with('location', 'location.solar_system', 'location.structure', 'location.station', 'location.solar_system.region', 'online');
+        $filterToSelf = !$user->can('woke-up-chose-violence.character_map');
 
         if ($system_id) {
             $characters = $characters->whereHas('location.solar_system', function ($system) use ($system_id) {
@@ -104,9 +105,11 @@ class CharacterMapController extends Controller
                     $region->where('region_id', $region_id);
                 }
             });
+        } else {
+            $filterToSelf = true;
         }
 
-        if (!$user->can('woke-up-chose-violence.character_map')) {
+        if ($filterToSelf) {
             $characters = $user->characters()->with('location', 'location.solar_system', 'location.structure', 'location.station', 'location.solar_system.region', 'online');
         }
 

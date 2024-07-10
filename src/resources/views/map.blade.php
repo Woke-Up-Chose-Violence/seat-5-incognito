@@ -13,5 +13,8 @@
     <div class="card-header">
         <h3 class="card-title">Select A Region</h3>
     </div>
+    <div class="card-body">
+        <p>Please choose a Region from the dropdown on the left.</p>
+    </div>
 </div>
 @stop
