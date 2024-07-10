@@ -2,6 +2,7 @@
 
 namespace WokeUpChoseViolence\Seat5Incognito\Commands;
 
+use Seat\Eveapi\Bus\Character;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Models\User;
 
@@ -19,7 +20,7 @@ class CorpMembers extends BaseCorpCommand
         $this->getActiveCorporationUsers($corporation_id)
             ->each(function (User $user) {
                 $user->all_characters()->each(function (CharacterInfo $character) {
-                    $this->call('esi:update:characters', ['character_id' => $character->character_id]);
+                    (new Character($character->character_id, $character->refresh_token))->fire();
                     $this->call('esi:update:notifications', ['character_id' => $character->character_id]);
                 });
             });
