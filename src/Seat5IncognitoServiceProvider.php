@@ -11,6 +11,7 @@ use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Corp;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersLocations;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersOnline;
+use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersSkills;
 use WokeUpChoseViolence\Seat5Incognito\Observers\CharacterNotificationObserver;
 use WokeUpChoseViolence\Seat5Incognito\Observers\ContractDetailObserver;
 use WokeUpChoseViolence\Seat5Incognito\Observers\UserObserver;
@@ -86,6 +87,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
             CorpContracts::class,
             CorpMembersOnline::class,
             CorpMembersLocations::class,
+            CorpMembersSkills::class,
         ]);
     }
 
