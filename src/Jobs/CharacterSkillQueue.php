@@ -11,7 +11,7 @@ class CharacterSkillQueue extends Queue
     public function handle()
     { 
         CharacterSkillQueueModel::where('character_id', $this->getCharacterId())
-            ->where('updated_at', '>', Carbon::now()->subDays(7))
+            ->where('updated_at', '<', Carbon::now()->subDays(7))
             ->delete();
 
         parent::handle();
