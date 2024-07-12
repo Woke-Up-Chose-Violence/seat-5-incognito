@@ -31,12 +31,7 @@ class CharacterSkillQueue extends AbstractAuthCharacterJob
     /**
      * @var array
      */
-    protected $tags = ['character', 'skill'];
-
-    /**
-     * @var int
-     */
-    protected $greatest_position;
+    protected $tags = ['character', 'skill', 'skillqueue'];
 
     /**
      * Execute the job.
@@ -47,13 +42,13 @@ class CharacterSkillQueue extends AbstractAuthCharacterJob
     {
         parent::handle();
 
-        $this->greatest_position = -1;
-
         $response = $this->retrieve([
             'character_id' => $this->getCharacterId(),
         ]);
 
         $skills = $response->getBody();
+
+        CharacterSkillQueueModel::where('character_id', $this->getCharacterId())->delete();
 
         collect($skills)->each(function ($skill) {
 
@@ -67,21 +62,6 @@ class CharacterSkillQueue extends AbstractAuthCharacterJob
                     return $this->getCharacterId();
                 },
             ])->save();
-
-            if ($skill->queue_position > $this->greatest_position)
-                $this->greatest_position = $skill->queue_position;
         });
-
-        // dropping outdated skills
-        CharacterSkillQueueModel::where('character_id', $this->getCharacterId())
-            ->where('queue_position', '>', $this->greatest_position)
-            ->delete();
-
-        // we want updated_at to represent esi pull date not when things actually differ
-        CharacterSkillQueueModel::where('character_id', $this->getCharacterId())
-            ->get()
-            ->each(function (CharacterSkillQueueModel $model) {
-                $model->touch();
-            });
     }
 }
