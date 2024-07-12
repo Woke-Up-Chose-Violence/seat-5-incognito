@@ -19,7 +19,7 @@ class BombSettingsController extends Controller
         return view('woke-up-chose-violence::settings.home', $settings);
     }
 
-    public function update(Request $request) {
+    public function saveSettings(Request $request) {
         $request->validate([
             'skill_queue_warnings'  => 'required|boolean',
             'industry_warnings'     => 'required|boolean',
