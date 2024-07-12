@@ -35,12 +35,10 @@ return new class extends Migration
     {
         Schema::create('bomb_settings', function (Blueprint $table) {
 
-            $table->bigInteger('id')->primary();
-            $table->integer('user_id');
+            $table->bigInteger('id', true)->primary();
+            $table->integer('user_id')->unique();
             $table->boolean('skill_queue_warnings')->default(true);
             $table->boolean('industry_warnings')->default(true);
-
-            $table->index('user_id');
             $table->timestamps();
         });
     }
