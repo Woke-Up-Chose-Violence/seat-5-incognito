@@ -22,5 +22,6 @@
 
 return [
     'main_level' => 'Alliance Tools',
+    'settings' => 'Settings',
     'character_map' => 'Map',
 ];

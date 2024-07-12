@@ -5,7 +5,7 @@
 @section('page_description', trans('woke-up-chose-violence::global.page_subtitle'))
 
 @section('left')
-@include('woke-up-chose-violence::left', ['allRegions' => $allRegions, 'region' => null, 'characters' => $characters])
+@include('woke-up-chose-violence::character-map.left', ['allRegions' => $allRegions, 'region' => null, 'characters' => $characters])
 @stop
 
 @section('right')

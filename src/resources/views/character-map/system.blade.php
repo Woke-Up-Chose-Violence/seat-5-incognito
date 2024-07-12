@@ -6,7 +6,7 @@
 
 
 @section('left')
-@include('woke-up-chose-violence::left', ['allRegions' => $allRegions, 'region' => $region, 'system' => $system, 'characters' => $characters])
+@include('woke-up-chose-violence::character-map.left', ['allRegions' => $allRegions, 'region' => $region, 'system' => $system, 'characters' => $characters])
 @stop
 
 @section('right')

@@ -19,7 +19,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace WokeUpChoseViolence\Seat5Incognito\Http\Controllers;
+namespace WokeUpChoseViolence\Seat5Incognito\Http\Controllers\CharacterMap;
 
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Eveapi\Models\Sde\Region;
@@ -27,11 +27,6 @@ use Seat\Eveapi\Models\Sde\SolarSystem;
 use Seat\Web\Http\Controllers\Controller;
 use Seat\Web\Models\User;
 
-/**
- * Class CharacterMapController.
- *
- * @package WokeUpChoseViolence\Seat5Incognito\Http\Controllers
- */
 class CharacterMapController extends Controller
 {
     private function getStatic(int $region_id = null, int $system_id = null)
@@ -63,21 +58,21 @@ class CharacterMapController extends Controller
     {
         $static = $this->getStatic();
 
-        return view('woke-up-chose-violence::map', $static);
+        return view('woke-up-chose-violence::character-map.map', $static);
     }
 
     public function getRegionMap(int $region_id)
     {
         $static = $this->getStatic($region_id);
 
-        return view('woke-up-chose-violence::region', $static);
+        return view('woke-up-chose-violence::character-map.region', $static);
     }
 
     public function getSystemMap(int $system_id)
     {
         $static = $this->getStatic(null, $system_id);
 
-        return view('woke-up-chose-violence::system', $static);
+        return view('woke-up-chose-violence::character-map.system', $static);
     }
 
 

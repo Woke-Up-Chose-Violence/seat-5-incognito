@@ -52,7 +52,7 @@
 <script>
     $('#region_list').on('change', (e) => {
         e.preventDefault();
-        let route = "{{ route('woke-up-chose-violence.region', ['region_id' => '###']) }}".replace('###', e.target.value);
+        let route = "{{ route('woke-up-chose-violence.locations.region', ['region_id' => '###']) }}".replace('###', e.target.value);
         document.location = route;
     });
 </script>

@@ -24,4 +24,5 @@ return [
     'browser_title' => 'Character Location Map',
     'page_title' => 'Character Location Map',
     'page_subtitle' => 'Where all your characters are in space',
+    'save' => 'Save'
 ];
