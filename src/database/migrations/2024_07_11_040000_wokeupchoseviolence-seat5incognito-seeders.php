@@ -24,7 +24,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBombSettingsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -54,4 +54,4 @@ class CreateBombSettingsTable extends Migration
     {
         Schema::drop('bomb_settings');
     }
-}
+};
