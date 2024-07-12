@@ -10,7 +10,7 @@
         <h3 class="card-title">Settings</h3>
     </div>
     <div class="card-body">
-        <form method="post" id="bomb-settings-form">
+        <form role="form" action="{{ route('woke-up-chose-violence.settings.save') }}" method="post" id="bomb-settings-form">s
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="skill_queue_warnings">Get notifications about skill queue issues?</label>

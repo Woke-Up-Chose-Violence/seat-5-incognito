@@ -40,7 +40,7 @@ Route::group([
     ]);
 
     Route::post('/', [
-        'as' => 'woke-up-chose-violence.settings.home',
+        'as' => 'woke-up-chose-violence.settings.save',
         'uses' => 'SettingsController@saveSettings'
     ]);
 });

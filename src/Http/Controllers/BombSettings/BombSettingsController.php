@@ -32,7 +32,7 @@ class BombSettingsController extends Controller
 
         $settings->update();
 
-        return view('woke-up-chose-violence::settings.home', $settings);
+        return redirect()->route('woke-up-chose-violence.settings.home')->with('success', 'Settings Updated');
     }
 
     private function getUserBombSettings(): BombSettings
