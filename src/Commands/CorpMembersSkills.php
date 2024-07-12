@@ -2,6 +2,7 @@
 
 namespace WokeUpChoseViolence\Seat5Incognito\Commands;
 
+use \Illuminate\Support\Facades\Bus;
 use Seat\Eveapi\Jobs\Skills\Character\Attributes;
 use Seat\Eveapi\Jobs\Skills\Character\Skills;
 use Seat\Eveapi\Models\Character\CharacterInfo;
@@ -22,9 +23,11 @@ class CorpMembersSkills extends BaseCorpCommand
         $this->getActiveCorporationUsers($corporation_id)
             ->each(function (User $user) {
                 $user->all_characters()->each(function (CharacterInfo $character) {
-                    CharacterSkillQueue::dispatch($character->refresh_token);
-                    Attributes::dispatch($character->refresh_token);
-                    Skills::dispatch($character->refresh_token);
+                    Bus::batch([
+                        new CharacterSkillQueue($character->refresh_token),
+                        new Attributes($character->refresh_token),
+                        new Skills($character->refresh_token),
+                    ])->onQueue('characters')->name($character->name)->allowFailures()->dispatch();
                 });
             });
 
