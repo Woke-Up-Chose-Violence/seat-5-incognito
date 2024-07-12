@@ -41,6 +41,6 @@ Route::group([
 
     Route::post('/', [
         'as' => 'woke-up-chose-violence.settings.save',
-        'uses' => 'SettingsController@saveSettings'
+        'uses' => 'BombSettingsController@saveSettings'
     ]);
 });

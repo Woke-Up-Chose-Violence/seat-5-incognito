@@ -1,16 +1,16 @@
 @extends('web::layouts.grids.3-9')
 
-@section('title', trans('woke-up-chose-violence::global.browser_title'))
-@section('page_header', trans('woke-up-chose-violence::global.page_title'))
-@section('page_description', trans('woke-up-chose-violence::global.page_subtitle'))
+@section('title', trans('woke-up-chose-violence::global.settings.browser_title'))
+@section('page_header', trans('woke-up-chose-violence::global.settings.page_title'))
+@section('page_description', trans('woke-up-chose-violence::global.settings.page_subtitle'))
 
 @section('left')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Settings</h3>
+        <h3 class="card-title">Alliance Tool Settings</h3>
     </div>
     <div class="card-body">
-        <form role="form" action="{{ route('woke-up-chose-violence.settings.save') }}" method="post" id="bomb-settings-form">s
+        <form role="form" action="{{ route('woke-up-chose-violence.settings.save') }}" method="post" id="bomb-settings-form">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="skill_queue_warnings">Get notifications about skill queue issues?</label>

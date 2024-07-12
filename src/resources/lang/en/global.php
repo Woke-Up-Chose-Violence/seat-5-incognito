@@ -21,8 +21,15 @@
  */
 
 return [
-    'browser_title' => 'Character Location Map',
-    'page_title' => 'Character Location Map',
-    'page_subtitle' => 'Where all your characters are in space',
+    'locations' => [
+        'browser_title' => 'Character Location Map',
+        'page_title' => 'Character Location Map',
+        'page_subtitle' => 'Where all your characters are in space',
+    ],
+    'settings' => [
+        'browser_title' => 'Alliance Tools Settings',
+        'page_title' => 'Alliance Tools Settings',
+        'page_subtitle' => 'Control how these Alliance Tools work on your behalf',
+    ],
     'save' => 'Save'
 ];

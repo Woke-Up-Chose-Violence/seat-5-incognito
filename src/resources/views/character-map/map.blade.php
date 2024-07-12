@@ -1,8 +1,8 @@
 @extends('web::layouts.grids.3-9')
 
-@section('title', trans('woke-up-chose-violence::global.browser_title'))
-@section('page_header', trans('woke-up-chose-violence::global.page_title'))
-@section('page_description', trans('woke-up-chose-violence::global.page_subtitle'))
+@section('title', trans('woke-up-chose-violence::global.locations.browser_title'))
+@section('page_header', trans('woke-up-chose-violence::global.locations.page_title'))
+@section('page_description', trans('woke-up-chose-violence::global.locations.page_subtitle'))
 
 @section('left')
 @include('woke-up-chose-violence::character-map.left', ['allRegions' => $allRegions, 'region' => null, 'characters' => $characters])
