@@ -10,7 +10,7 @@ use Seat\Web\Models\User;
 use WokeUpChoseViolence\Seat5Incognito\Jobs\CharacterSkillQueue;
 
 /**
- * Class CorpMemberAssets
+ * Class CorpMembersSkills
  */
 class CorpMembersSkills extends BaseCorpCommand
 {

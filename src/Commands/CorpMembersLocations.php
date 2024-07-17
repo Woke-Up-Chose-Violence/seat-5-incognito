@@ -7,7 +7,7 @@ use Seat\Eveapi\Models\Character\CharacterInfo;
 use Seat\Web\Models\User;
 
 /**
- * Class CorpMemberAssets
+ * Class CorpMembersLocations
  */
 class CorpMembersLocations extends BaseCorpCommand
 {

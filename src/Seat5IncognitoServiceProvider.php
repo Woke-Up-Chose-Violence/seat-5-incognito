@@ -9,6 +9,7 @@ use Seat\Web\Models\User;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpContracts;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembers;
 use WokeUpChoseViolence\Seat5Incognito\Commands\Corp;
+use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersAssets;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersLocations;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersOnline;
 use WokeUpChoseViolence\Seat5Incognito\Commands\CorpMembersSkills;
@@ -88,6 +89,7 @@ class Seat5IncognitoServiceProvider extends AbstractSeatPlugin
             CorpMembersOnline::class,
             CorpMembersLocations::class,
             CorpMembersSkills::class,
+            CorpMembersAssets::class,
         ]);
     }
 
