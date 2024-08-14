@@ -51,5 +51,17 @@ abstract class BaseCorpCommand extends Command implements Isolatable
         })->get();
     }
 
+    /**
+     * @return Collection|User[]
+     */
+    protected final function getActiveAllianceUsers($alliance_id) {
+        return User::whereHas('refresh_tokens.affiliation.alliance', function (Builder $query) use ($alliance_id) {
+            $query->where('alliance_id', $alliance_id);
+        })->whereHas('characters.online', function (Builder|CharacterOnline $query) {
+            $query->where('last_login', '>', Carbon::now()->subDays(7));
+        })->get();
+    }
+
+
     abstract protected function handleCommand($corporation_id): int;
 }
