@@ -51,6 +51,26 @@
                 </label>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="fc_fleet_bot">Have the Bot support your fleet MOTD with updates?</label>
+                <div class="radio">
+                <label>
+                    @if($fc_fleet_bot)
+                    <input type="radio" id="fc_fleet_bot" name="fc_fleet_bot" value="0" /> No
+                    @else
+                    <input type="radio" id="fc_fleet_bot" name="fc_fleet_bot" value="0" checked /> No
+                    @endif
+                </label>
+                <label>
+                    @if($fc_fleet_bot)
+                    <input type="radio" id="fc_fleet_bot" name="fc_fleet_bot" value="1" checked /> Yes
+                    @else
+                    <input type="radio" id="fc_fleet_bot" name="fc_fleet_bot" value="1" /> Yes
+                    @endif
+                </label>
+                </div>
+            </div>
         </form>
     </div>
 

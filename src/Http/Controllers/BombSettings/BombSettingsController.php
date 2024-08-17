@@ -23,12 +23,14 @@ class BombSettingsController extends Controller
         $request->validate([
             'skill_queue_warnings'  => 'required|boolean',
             'industry_warnings'     => 'required|boolean',
+            'fc_fleet_bot'          => 'required|boolean',
         ]);
 
         $settings = $this->getUserBombSettings();
 
         $settings->skill_queue_warnings = $request->input('skill_queue_warnings') == '1';
         $settings->industry_warnings = $request->input('industry_warnings') == '1';
+        $settings->fc_fleet_bot = $request->input('fc_fleet_bot') == '1';
 
         $settings->update();
 

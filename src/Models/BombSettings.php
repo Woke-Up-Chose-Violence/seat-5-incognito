@@ -11,16 +11,19 @@ class BombSettings extends Model
     protected $casts = [
         'skill_queue_warnings' => 'boolean',
         'industry_warnings' => 'boolean',
+        'fc_fleet_bot' => 'boolean',
     ];
 
     protected $fillable = [
         'user_id',
         'skill_queue_warnings',
         'industry_warnings',
+        'fc_fleet_bot',
     ];
 
     protected $attributes = [
         'skill_queue_warnings' => false,
         'industry_warnings' => false,
+        'fc_fleet_bot' => true,
     ];
 }
