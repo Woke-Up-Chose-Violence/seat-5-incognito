@@ -1,8 +1,8 @@
 @extends('web::layouts.grids.3-9')
 
-@section('title', trans('woke-up-chose-violence::global.browser_title'))
-@section('page_header', trans('woke-up-chose-violence::global.page_title'))
-@section('page_description', trans('woke-up-chose-violence::global.page_subtitle'))
+@section('title', $region->name . ' - '. trans('woke-up-chose-violence::global.locations.browser_title'))
+@section('page_header', trans('woke-up-chose-violence::global.locations.page_title'))
+@section('page_description', trans('woke-up-chose-violence::global.locations.page_subtitle'))
 
 
 @section('left')
@@ -32,6 +32,7 @@
         document.getElementById('legend').remove();
         document.getElementById('controls').remove();
         document.querySelectorAll("[id^=rect]").forEach(el => el.style.fill = 'white');
+        document.querySelectorAll("symbol[id^=def] > a > text[id]").forEach(el => el.textContent = '');
         setTimeout(function() {
             @foreach(array_filter($characters, function ($character) { return !$character->online || !$character->online->online; }) as $character)
             try {

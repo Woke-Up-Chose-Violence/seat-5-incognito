@@ -1,8 +1,8 @@
 @extends('web::layouts.grids.3-9')
 
-@section('title', $system->name . ' - '. trans('woke-up-chose-violence::global.browser_title'))
-@section('page_header', trans('woke-up-chose-violence::global.page_title'))
-@section('page_description', trans('woke-up-chose-violence::global.page_subtitle'))
+@section('title', $system->name . ' - '. trans('woke-up-chose-violence::global.locations.browser_title'))
+@section('page_header', trans('woke-up-chose-violence::global.locations.page_title'))
+@section('page_description', trans('woke-up-chose-violence::global.locations.page_subtitle'))
 
 
 @section('left')
