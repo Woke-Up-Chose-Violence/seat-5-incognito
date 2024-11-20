@@ -12,18 +12,20 @@ use Seat\Web\Models\User;
  */
 class CorpMembersNotifications extends BaseCorpCommand
 {
-    protected $signature = 'bomb:corp-members-noitifications {corporationId}';
+    protected $signature = 'bomb:corp-members-notifications {corporationId}';
 
-    protected $description = "Schedule noitifications jobs for a corporation's members";
+    protected $description = "Schedule notifications jobs for a corporation's members";
 
     protected function handleCommand($corporation_id): int
     {
         $this->getActiveCorporationUsers($corporation_id)
             ->each(function (User $user) {
                 $user->all_characters()->each(function (CharacterInfo $character) {
-                    Bus::batch([
-                        new Notifications($character->refresh_token),
-                    ])->onQueue('characters')->name($character->name)->dispatch();
+                    if ($character->refresh_token) {
+                        Bus::batch([
+                            new Notifications($character->refresh_token),
+                        ])->onQueue('characters')->name($character->name)->dispatch();
+                    }
                 });
             });
 
